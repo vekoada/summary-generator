@@ -2,6 +2,7 @@ import openai
 import json
 from youtube_transcript_api import YouTubeTranscriptApi as yt
 from youtube_transcript_api._errors import TranscriptsDisabled
+from VidID import extract
 
 def get_keys(path):
     with open(path) as f:
@@ -10,10 +11,11 @@ def get_keys(path):
 #Grab API key from secret dict
 openai.api_key = get_keys('c:/Users/Adam/repos/summary-generator/.secret/keys.json')['openai']
 
-#Grab list of dictionaries 'subs'
-vid = 'jPQ87J_5qyw' #4x7MkLDGnu8
+#Grab video id from url
+vid = extract('https://www.youtube.com/watch?v=4x7MkLDGnu8')
 
 try:
+    #Grab list of dictionaries 'subs'
     subs = yt.get_transcript(video_id=vid,languages=['en'])
 
     #Build text string
