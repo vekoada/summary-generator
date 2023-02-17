@@ -16,24 +16,13 @@ vid = 'jPQ87J_5qyw' #4x7MkLDGnu8
 try:
     subs = yt.get_transcript(video_id=vid,languages=['en'])
 
-    print(subs)
-
-    #Write the 'text'of each dictionary to file
-    with open("c:/Users/Adam/repos/summary-generator/subtitles.txt", "w") as f:
-        for i in subs:
-            f.write("{}\n".format(i['text']))
-
-    #Read subtitle file
-    with open('c:/Users/Adam/repos/summary-generator/subtitles.txt') as f:
-        contents = f.read()
-
-    #Initialize text string and build from file contents
-    text = ""
-    for i in contents:
-        text += i
+    #Build text string
+    text = ''
+    for i in subs:
+        text+= '{} '.format(i['text'])
 
     #Initialize prompt with instructions and video text
-    prompt = (f"Please summarize this text: " + text)
+    prompt = (f"Please summarize this text: {text}")
 
     response = openai.Completion.create(
         engine="text-curie-001",
