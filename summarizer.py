@@ -1,5 +1,6 @@
 import openai
 import json
+from pytube import YouTube
 from youtube_transcript_api import YouTubeTranscriptApi as yt
 from youtube_transcript_api._errors import TranscriptsDisabled
 from VidID import extract
@@ -12,12 +13,16 @@ def get_keys(path):
 openai.api_key = get_keys('c:/Users/Adam/repos/summary-generator/.secret/keys.json')['openai']
 
 #Grab video id from url
-vid = extract('https://www.youtube.com/watch?v=4x7MkLDGnu8')
+url = 'https://www.youtube.com/watch?v=4x7MkLDGnu8'
+video_id = extract(url)
+
+video = YouTube(url=url)
+video_title = video.title
 
 try:
     #Grab list of dictionaries 'subs'
-    subs = yt.get_transcript(video_id=vid,languages=['en'])
-
+    subs = yt.get_transcript(video_id=video_id,languages=['en'])
+   
     #Build text string
     text = ''
     for i in subs:
