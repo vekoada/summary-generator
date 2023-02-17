@@ -1,3 +1,4 @@
 .secret/keys.json
 summary.txt
 subtitles.txt
+*.pyc
