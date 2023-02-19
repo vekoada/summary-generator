@@ -26,34 +26,28 @@ try:
     for i in subs:
         text+= '{} '.format(i['text'])
 
-    #Initialize prompt with instructions and video text
-    prompt = f"Please summarize this video, based on the following subtitles: {text[:3500]}"
-    summary = ""
-    for data in model.ask(prompt):
-        summary = data["message"]
-    print(summary)
+    chunk_list = create_chunks(text, 3500) #Max chunk size (char limit)
+    summary_list = []
 
-    # chunk_list = create_chunks(text, 3000) #Max chunk size (char limit)
-    # summary_list = []
+    for chunk in chunk_list:
+        #Initialize prompt with instructions and video text
+        prompt = f"Please summarize this video, based on the following subtitles: {chunk}"
+        chunk_summary = ""
+        for data in model.ask(prompt):
+            chunk_summary = data["message"]
 
-    # for chunk in chunk_list:
+        summary_list.append(chunk_summary)
 
-    #     #Initialize prompt with instructions and video text
-    #     prompt = f"Please summarize this video, based on the following subtitles: {chunk}"
-    #     chunk_summary = ""
-    #     for data in model.ask(prompt):
-    #         chunk_summary = data["message"]
+    summary_concatenated = ""
+    for chunk_summary in summary_list:
+        summary_concatenated+= chunk_summary
 
-    #     summary_list.append(chunk_summary)
+    final_prompt = f"Please summarize this video, based on the following description. Pay attention to the main points, and strive for accuracy: {summary_concatenated}"
+    final_summary = ""
+    for data in model.ask(final_prompt):
+        final_summary = data["message"]
 
-    # summary_concatenated = ""
-    # for chunk_summary in summary_list:
-    #     summary_concatenated+= chunk_summary
-
-    # final_prompt = f"Please summarize this video, based on the following description. Pay attention to the main points, and strive for accuracy: {summary_concatenated}"
-    # summary = ""
-    # for data in model.ask(final_prompt):
-    #     summary = data["message"]
+    print(final_summary)
 
     # #Write summary to file
     # with open('c:/Users/Adam/repos/summary-generator/chatgpt_summary.txt', 'w') as f:
