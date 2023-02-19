@@ -3,7 +3,7 @@ import json
 #from pytube import YouTube
 from youtube_transcript_api import YouTubeTranscriptApi as yt
 from youtube_transcript_api._errors import TranscriptsDisabled
-from VidID import extract
+from video_id_extract import extract_id
 from chunker import create_chunks
 
 def get_keys(path):
@@ -15,7 +15,7 @@ openai.api_key = get_keys('c:/Users/Adam/repos/summary-generator/.secret/keys.js
 
 #Grab video id from url
 url = 'https://www.youtube.com/watch?v=4x7MkLDGnu8'
-video_id = extract(url)
+video_id = extract_id(url)
 
 #video = YouTube(url=url)
 #video_title = video.title
