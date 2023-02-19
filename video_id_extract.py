@@ -1,7 +1,7 @@
 import re
 from urllib.parse import urlparse, parse_qs
 
-def extract(url):
+def extract_id(url):
     
     error = "The url provided is not a video, or is not from the YouTube.com domain"
 
