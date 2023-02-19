@@ -1,17 +1,19 @@
-from revChatGPT.V1 import Chatbot
+from revChatGPT.V1 import Chatbot as gpt
 import json
 from youtube_transcript_api import YouTubeTranscriptApi as yt
 from youtube_transcript_api._errors import TranscriptsDisabled
 from video_id_extract import extract_id
 from chunker import create_chunks
+import time
 
 def get_credentials(path):
     with open(path) as f:
         return json.load(f)
 
-model = Chatbot(
-  config=get_credentials("c:/Users/Adam/.config/revChatGPT/config.json")
-  )
+start_time = time.time()
+
+path ="c:/Users/Adam/.config/revChatGPT/config.json"
+model = gpt(get_credentials(path))
 
 #Grab video id from url
 url = 'https://www.youtube.com/watch?v=1cBziFxjqXI' #DJ interview ~23min
@@ -47,7 +49,11 @@ try:
     for data in model.ask(final_prompt):
         final_summary = data["message"]
 
+    print(summary_concatenated)
+    print(" ")
     print(final_summary)
+
+    print("--- %s seconds ---" % (time.time() - start_time))
 
     # #Write summary to file
     # with open('c:/Users/Adam/repos/summary-generator/chatgpt_summary.txt', 'w') as f:
