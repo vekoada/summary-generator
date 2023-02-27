@@ -16,7 +16,7 @@ path ="c:/Users/Adam/.config/revChatGPT/config.json"
 model = gpt(get_credentials(path))
 
 #Grab video id from url
-url = 'https://www.youtube.com/watch?v=1cBziFxjqXI' #DJ interview ~23min
+url = 'https://www.youtube.com/watch?v=5MuIMqhT8DM&ab_channel=TED' #Sleep TED Talk ~20min
 video_id = extract_id(url)
 
 try:
