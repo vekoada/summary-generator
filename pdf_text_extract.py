@@ -12,7 +12,8 @@ f = request.urlopen(req).read()
 pdf_file = BytesIO(f)
 reader = PdfReader(pdf_file)
 number_of_pages = len(reader.pages)
-page = reader.pages[0]
-text = page.extract_text()
+text = ''
+for i in range(0, 10):
+    text += reader.pages[i].extract_text()
 
 print(text)
