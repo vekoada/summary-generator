@@ -1,14 +1,10 @@
 from revChatGPT.V1 import Chatbot as gpt
-import json
+from configure import get_credentials
 from youtube_transcript_api import YouTubeTranscriptApi as yt
 from youtube_transcript_api._errors import TranscriptsDisabled
 from video_id_extract import extract_id
 from chunker import create_chunks
 import time
-
-def get_credentials(path):
-    with open(path) as f:
-        return json.load(f)
 
 start_time = time.time()
 
@@ -16,7 +12,7 @@ path ="c:/Users/Adam/.config/revChatGPT/config.json"
 model = gpt(get_credentials(path))
 
 #Grab video id from url
-url = 'https://www.youtube.com/watch?v=5MuIMqhT8DM&ab_channel=TED' #Sleep TED Talk ~20min
+url = 'https://www.youtube.com/watch?v=OreOydHobQU' #Sleep TED Talk ~20min
 video_id = extract_id(url)
 
 try:
