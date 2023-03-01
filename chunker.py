@@ -1,6 +1,6 @@
 def create_chunks(text, chunk_size):
     #Set number of chunks
-    num_chunks = (len(text) + chunk_size - 1) // chunk_size
+    num_chunks = (len(text) + chunk_size) // chunk_size
     x = [] #List of chunks
 
     #Loop over chunks
