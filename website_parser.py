@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-def website_parser(url):  
+def get_text(url):  
     # Send a request to the website and get the response
     response = requests.get(url)
 
