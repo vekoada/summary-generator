@@ -1,14 +1,10 @@
 import openai
-import json
+from configure import get_credentials
 #from pytube import YouTube
 from youtube_transcript_api import YouTubeTranscriptApi as yt
 from youtube_transcript_api._errors import TranscriptsDisabled
 from video_id_extract import extract_id
 from chunker import create_chunks
-
-def get_keys(path):
-    with open(path) as f:
-        return json.load(f)
 
 #Grab API key from secret dict
 openai.api_key = get_keys('c:/Users/Adam/repos/summary-generator/.secret/keys.json')['openai']

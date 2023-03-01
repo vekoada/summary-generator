@@ -1,13 +1,8 @@
 from revChatGPT.V1 import Chatbot as gpt
-import json
+from configure import get_credentials
 from website_parser import get_text
 from chunker import create_chunks
 import time
-
-#Get credentials for model from config file
-def get_credentials(path):
-    with open(path) as f:
-        return json.load(f)
 
 start_time = time.time()
 
