@@ -2,7 +2,7 @@ from revChatGPT.V1 import Chatbot as gpt
 from configure import get_credentials
 from youtube_transcript_api import YouTubeTranscriptApi as yt
 from youtube_transcript_api._errors import TranscriptsDisabled
-from video_id_extract import extract_id
+from video import extract_id
 from chunker import create_chunks
 import time
 
@@ -40,7 +40,7 @@ try:
     for chunk_summary in summary_list:
         summary_concatenated+= chunk_summary
 
-    final_prompt = f"Please summarize this video, based on the following description. Pay attention to the main points, and strive for accuracy: {summary_concatenated}"
+    final_prompt = f"Please summarize this video, based on the following description. Strive for accuracy: {summary_concatenated}"
     final_summary = ""
     for data in model.ask(final_prompt):
         final_summary = data["message"]
