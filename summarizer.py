@@ -3,11 +3,11 @@ from configure import get_credentials
 #from pytube import YouTube
 from youtube_transcript_api import YouTubeTranscriptApi as yt
 from youtube_transcript_api._errors import TranscriptsDisabled
-from video_id_extract import extract_id
+from video import extract_id
 from chunker import create_chunks
 
 #Grab API key from secret dict
-openai.api_key = get_keys('c:/Users/Adam/repos/summary-generator/.secret/keys.json')['openai']
+openai.api_key = get_credentials('c:/Users/Adam/repos/summary-generator/.secret/keys.json')['openai']
 
 #Grab video id from url
 url = 'https://www.youtube.com/watch?v=4x7MkLDGnu8'
@@ -31,7 +31,7 @@ try:
     for chunk in chunk_list:
 
         #Initialize prompt with instructions and video text
-        prompt = (f"Please summarize this section of video captions, keeping an eye out for the main points: {chunk}")
+        prompt = (f"Please summarize this video, based on the following subtitles: {chunk}")
 
         response = openai.Completion.create(
             engine="text-davinci-002",
@@ -47,7 +47,7 @@ try:
     for chunk_summary in summary_list:
         summary_concatenated+= chunk_summary
 
-    prompt = (f"Please summarize this video, based on the following description. Pay attention to the main points, and strive for accuracy: {summary_concatenated}")
+    prompt = (f"Please summarize this video, based on the following description. Strive for accuracy: {summary_concatenated}")
     response = openai.Completion.create(
         engine="text-davinci-002",
         prompt=prompt,
