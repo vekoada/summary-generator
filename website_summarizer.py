@@ -1,6 +1,6 @@
 from revChatGPT.V1 import Chatbot as gpt
 from configure import get_credentials
-from website_parser import get_text
+from site_parser import get_text
 from chunker import create_chunks
 import time
 
