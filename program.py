@@ -1,12 +1,13 @@
 import video as v
 import site_parser as site
 import summary
+import pdf
 
 def main(url):
     if 'youtube.com' in url:
-        video_id = v.extract_id(url)
-        text = v.get_text(video_id)
-    #elif '.pdf' in url:
+        text = v.get_text(url=url)
+    elif '.pdf' in url:
+        text = pdf.get_text(url=url)
 
     else:
         text = site.get_text(url)
@@ -16,5 +17,7 @@ def main(url):
     return result
 
 if __name__ == "__main__":
-    url = 'https://www.youtube.com/watch?v=4x7MkLDGnu8'
-    main(url=url)
+    url = 'https://arxiv.org/pdf/2004.10178.pdf'
+    print(main(url=url)[0])
+    print("................................")
+    print(main(url=url)[1])
