@@ -1,3 +1,4 @@
 .secret/keys.json
 *.txt
 *.pyc
+*.m4a
