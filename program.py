@@ -1,6 +1,6 @@
 import video as v
 import site_parser as site
-import summary
+import method_1
 import pdf
 
 def main(url):
@@ -15,10 +15,10 @@ def main(url):
         text = site.get_text(url)
         medium = 'article'
 
-    result = summary.run(text=text, medium=medium)
+    result = method_1.run(text=text, medium=medium)
 
     return result
 
 if __name__ == "__main__":
-    url = 'https://www.youtube.com/watch?v=2ueCyvI4DEo&ab_channel=BestEverFoodReviewShow'
+    url = 'https://www.babbel.com/learn-spanish'
     print(main(url=url))
