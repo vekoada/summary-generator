@@ -1,9 +1,10 @@
 import video as v
 import site_parser as site
-import method_1
+import summary
 import pdf
+import time
 
-def main(url):
+def main(url, mode):
     if 'youtube.com' in url:
         text = v.get_text(url=url)
         medium = 'video'
@@ -15,10 +16,13 @@ def main(url):
         text = site.get_text(url)
         medium = 'article'
 
-    result = method_1.run(text=text, medium=medium)
+    result = summary.run(text=text, medium=medium, mode=mode, overlap=300)
 
+    print(len(text))
     return result
 
 if __name__ == "__main__":
-    url = 'https://www.babbel.com/learn-spanish'
-    print(main(url=url))
+    start_time = time.time()
+    url = 'https://www.icandrive.com/wp-content/uploads/2019/01/How-to-Change-a-Flat-Tire-Student-Handout.pdf'
+    print(main(url=url, mode='random'))
+    print("--- %s seconds ---" % (time.time() - start_time))
