@@ -3,7 +3,7 @@ from chunker import create_chunks
 from configure import get_credentials
 
 
-def run(text, chunk_size=800, path_to_credentials='c:/Users/Adam/repos/summary-generator/.secret/keys.json'):
+def run(text, medium, chunk_size=800, path_to_credentials='c:/Users/Adam/repos/summary-generator/.secret/keys.json'):
     chunk_list = create_chunks(text, chunk_size)
     summary_list = []
 
@@ -11,10 +11,10 @@ def run(text, chunk_size=800, path_to_credentials='c:/Users/Adam/repos/summary-g
 
     for chunk in chunk_list:
 
-        #Initialize prompt with instructions and video text
+        #Initialize prompt with instructions and text
         response = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
-            messages = [{"role": "user", "content" : f"Please summarize this video, article, or pdf, based on the following text in 3 sentences or less: {chunk}" }])
+            messages = [{"role": "user", "content" : f"Please summarize this section of a {medium}, based on the following text in 3 sentences or less: {chunk}" }])
 
         chunk_summary = response['choices'][0]['message']['content']
         summary_list.append(chunk_summary)
@@ -25,8 +25,8 @@ def run(text, chunk_size=800, path_to_credentials='c:/Users/Adam/repos/summary-g
 
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
-         messages=[{"role": "user", "content": f"Please summarize this video, based on the following description. Strive for accuracy: {summary_concatenated}"}])
+         messages=[{"role": "user", "content": f"Please give a thorough and detailed synopsis of this {medium}, based on the following description. Fix all grammar and spelling errors. Write fluently and make it cohesive. Don't overuse the word {medium}. Add bullet points if it appears to be a tutorial. Highlight and give specific details around a key moment: {summary_concatenated}"}])
 
     summary = response['choices'][0]['message']['content']
 
-    return summary, summary_concatenated
+    return summary
