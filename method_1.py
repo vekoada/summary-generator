@@ -25,7 +25,7 @@ def run(text, medium, chunk_size=800, path_to_credentials='c:/Users/Adam/repos/s
 
     response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
-         messages=[{"role": "user", "content": f"Please give a thorough and detailed synopsis of this {medium}, based on the following description. Fix all grammar and spelling errors. Write fluently and make it cohesive. Don't overuse the word {medium}. Add bullet points if it appears to be a tutorial. Highlight and give specific details around a key moment: {summary_concatenated}"}])
+         messages=[{"role": "user", "content": f"Please give a thorough and detailed synopsis of this {medium}, based on the following description. Fix all grammar and spelling errors. Write fluently and make it cohesive. Provide a few bullet points at the end with key points/moments. Don't overuse the word {medium}. Add process bullet points if it appears to be a tutorial. Highlight and give specific details around a key moment: {summary_concatenated}"}])
 
     summary = response['choices'][0]['message']['content']
 
