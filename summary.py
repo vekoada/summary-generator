@@ -1,10 +1,14 @@
 import openai
-from chunker import create_chunks
+from chunker import create_chunks, random_chunks
 from configure import get_credentials
 
 
-def run(text, medium, chunk_size=800, path_to_credentials='c:/Users/Adam/repos/summary-generator/.secret/keys.json'):
-    chunk_list = create_chunks(text, chunk_size)
+def run(text, medium, overlap, mode, path_to_credentials='c:/Users/Adam/repos/summary-generator/.secret/keys.json'):
+    if mode != 'random':
+        chunk_list = create_chunks(text, overlap)
+    else:
+        chunk_list = random_chunks(text)
+    
     summary_list = []
 
     openai.api_key = get_credentials(path_to_credentials)['openai']
