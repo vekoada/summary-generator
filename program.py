@@ -6,18 +6,19 @@ import pdf
 def main(url):
     if 'youtube.com' in url:
         text = v.get_text(url=url)
+        medium = 'video'
     elif '.pdf' in url:
         text = pdf.get_text(url=url)
+        medium = 'PDF'
 
     else:
         text = site.get_text(url)
+        medium = 'article'
 
-    result = summary.run(text=text)
+    result = summary.run(text=text, medium=medium)
 
     return result
 
 if __name__ == "__main__":
-    url = 'https://arxiv.org/pdf/2004.10178.pdf'
-    print(main(url=url)[0])
-    print("................................")
-    print(main(url=url)[1])
+    url = 'https://www.youtube.com/watch?v=2ueCyvI4DEo&ab_channel=BestEverFoodReviewShow'
+    print(main(url=url))
