@@ -29,29 +29,13 @@ def extract_id(url):
     
 def get_text(url):
     video_id = extract_id(url)
-    try:
-        #Grab list of dictionaries 'subs'
-        subs = yt.get_transcript(video_id=video_id,languages=['en'])
+    #Grab list of dictionaries 'subs'
+    subs = yt.get_transcript(video_id=video_id,languages=['en'])
 
-        #Build text string
-        text = ''
-        for i in subs:
-            text+= '{} '.format(i['text'])
+    #Build text string
+    text = ''
+    for i in subs:
+        text+= '{} '.format(i['text'])
         
-        return text
+    return text
     
-    except TranscriptsDisabled as e: 
-        print("This video does not have captions. Generating captions, please wait...")
-        return generate_captions(url=url)
-
-def generate_captions(f):
-
-    #file = downloader.dl(url)
-
-    file = open(f, 'rb')
-
-    text = openai.Audio.translate("whisper-1", file.getvalue())
-
-    return text['text']
-
-#print(generate_captions('./thing.m4a.part')) #https://www.youtube.com/watch?v=voa0btsVSfk
