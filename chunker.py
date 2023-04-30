@@ -35,7 +35,7 @@ def random_chunks(text):
     chunk_size = 900
     chunk_list = []
     
-    num_chunks = int(round((log(((len(text) + chunk_size)/1000.0)**3) + 1), 0)) 
+    num_chunks = int(round((log((((len(text) + chunk_size)/1000.0)**3) + 1)), 0)) 
     
     for i in range(num_chunks):
         start = randint(0, (len(text) - 1 - 900))
@@ -47,5 +47,7 @@ def random_chunks(text):
                 #No whitespace; use original end index
                 end = start + chunk_size
         chunk_list.append(text[start:end])
+        print(text[start:end])
+        print("-------------------")
 
     return chunk_list
