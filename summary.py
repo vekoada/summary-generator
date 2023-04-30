@@ -1,9 +1,11 @@
 import openai
 from chunker import create_chunks, random_chunks
 from configure import get_credentials
+from translate import translate
 
 
-def run(text, medium, overlap, mode, path_to_credentials='c:/Users/Adam/repos/summary-generator/.secret/keys.json'):
+def run(text, medium, overlap, mode, lang='English', path_to_credentials='c:/Users/Adam/repos/summary-generator/.secret/keys.json'):
+    lang = lang
     if mode != 'random':
         chunk_list = create_chunks(text, overlap)
     else:
@@ -32,5 +34,8 @@ def run(text, medium, overlap, mode, path_to_credentials='c:/Users/Adam/repos/su
          messages=[{"role": "user", "content": f"Please give a thorough and detailed synopsis of this {medium}, based on the following description. Fix all grammar and spelling errors. Write fluently and make it cohesive. Provide a few bullet points at the end with key points/moments. Don't overuse the word {medium}. Add process bullet points if it appears to be a tutorial. Highlight and give specific details around a key moment: {summary_concatenated}"}])
 
     summary = response['choices'][0]['message']['content']
+
+    if lang.lower() != 'english':
+        summary = translate(lang, summary)
 
     return summary
