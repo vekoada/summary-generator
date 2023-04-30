@@ -13,7 +13,7 @@ def get_text(url):
         soup = BeautifulSoup(page_content, 'html.parser')
 
         text = ''
-        for data in soup.find_all("p"): 
+        for data in soup.find_all(["p", "code"]): 
             text+= ' ' + data.get_text()
         return text
 
