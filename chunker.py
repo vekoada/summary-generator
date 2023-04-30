@@ -1,7 +1,7 @@
 def create_chunks(text, chunk_size):
     #Set number of chunks
     num_chunks = (len(text) + chunk_size) // chunk_size
-    x = [] #List of chunks
+    chunk_list = [] #List of chunks
 
     #Loop over chunks
     start = 0
@@ -13,7 +13,7 @@ def create_chunks(text, chunk_size):
             if end == -1:
                 #No whitespace; use original end index
                 end = start + chunk_size
-        x.append(text[start:end])
+        chunk_list.append(text[start:end])
         start = end + 1
 
-    return x
+    return chunk_list
