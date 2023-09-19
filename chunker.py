@@ -24,12 +24,6 @@ def create_chunks(text: str, overlap: int) -> list:
         >>>     print(chunk)
         'This is a sample text that will be divided into'
         'chunks with overlap.'
-        
-    Note:
-        The 'overlap' parameter determines how many characters overlap between adjacent chunks. If 'overlap' is set to 0,
-        the chunks will be non-overlapping, resulting in approximately 900 characters per chunk. The function attempts
-        to avoid splitting words in the middle when creating chunks.
-
     """
     chunk_size = 900 - overlap
 
@@ -81,13 +75,6 @@ def random_chunks(text: str) -> list:
         >>>     print(chunk)
         'This is a sample text that will be divided into'
         'random-sized chunks.'
-
-    Note:
-        - Chunks are created with an approximate length of 900 characters to maintain readability.
-        - The number of chunks is calculated using a logarithmic formula based on the text length, aiming for a balanced
-          distribution of chunks.
-        - The function attempts to avoid splitting words in the middle when creating chunks.
-        - The 'randint' function is used to select random starting points for chunk creation.
     """
     chunk_size = 900
     chunk_list = []
