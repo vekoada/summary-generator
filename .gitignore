@@ -2,3 +2,4 @@
 *.txt
 *.pyc
 *.m4a
+.vscode/settings.json
