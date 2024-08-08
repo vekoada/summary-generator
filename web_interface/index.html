@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles.css">
-  <title>Summarizer</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Video Summarizer</title>
 </head>
-
 <body>
+    <h1>Video Summarizer</h1>
 
-  <h1>Welcome to the Summarizer</h1>
+    <div>
+        <form method="POST" action="{{ url_for('process_video') }}">
+            <label for="video_url">Enter YouTube URL:</label>
+            <input type="text" id="video_url" name="video_url" required>
+            <button type="submit">Summarize</button>
+        </form>
+    </div>
 
-  <div>
-    <form method="POST" action="{{ url_for('get_video_url') }}">
-      <label for="video_url">Paste URL:</label>
-      <br>
-      <input type="text" id="video_url" name="video_url">
-      <br>
-      <input type="submit" value="Submit">
-    </form>
-  </div>
+    {% if video_id %}
+    <div id="videoContainer">
+        <iframe id="videoPlayer" width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" frameborder="0" allowfullscreen></iframe>
+    </div>
+    {% endif %}
+
+    {% if summary %}
+    <div id="summaryContainer">
+        <h2>Video Summary</h2>
+        <p id="summaryText">{{ summary }}</p>
+    </div>
+    {% endif %}
 
 </body>
 </html>
