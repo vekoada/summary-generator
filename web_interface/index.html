@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
-    <title>Video Summarizer</title>
+    <title>Content Summarizer</title>
 </head>
 <body>
-    <h1>Video Summarizer</h1>
+    <h1>Content Summarizer</h1>
 
     <div>
-        <form method="POST" action="{{ url_for('process_video') }}">
-            <label for="video_url">Enter YouTube URL:</label>
-            <input type="text" id="video_url" name="video_url" required>
+        <form method="POST" action="{{ url_for('process_content') }}">
+            <label for="content_url">Enter YouTube URL or PDF URL:</label>
+            <input type="text" id="content_url" name="content_url" required>
             <button type="submit">Summarize</button>
         </form>
     </div>
@@ -24,9 +24,15 @@
     </div>
     {% endif %}
 
+    {% if pdf_url %}
+    <div id="pdfContainer">
+        <iframe id="pdfViewer" width="100%" height="600" src="{{ pdf_url }}" frameborder="0"></iframe>
+    </div>
+    {% endif %}
+
     {% if summary %}
     <div id="summaryContainer">
-        <h2>Video Summary</h2>
+        <h2>Content Summary</h2>
         <p id="summaryText">{{ summary }}</p>
     </div>
     {% endif %}
