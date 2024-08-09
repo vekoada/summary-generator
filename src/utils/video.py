@@ -6,16 +6,9 @@ from urllib.parse import urlparse, parse_qs
 from youtube_transcript_api import YouTubeTranscriptApi as yt
 from youtube_transcript_api._errors import TranscriptsDisabled
 
-# Local imports
-import configure
-
 def extract_youtube_video_id(url: str) -> str:
     """
     Extracts the video ID from a YouTube video URL.
-
-    This function takes a YouTube video URL as input and extracts the unique video ID from it. The URL must be from
-    the YouTube.com domain for the function to work properly. If the URL is invalid or not from YouTube.com, a ValueError
-    is raised.
 
     Args:
         url (str): A string containing the YouTube video URL.
@@ -25,11 +18,6 @@ def extract_youtube_video_id(url: str) -> str:
 
     Raises:
         ValueError: If the URL is not a video or not from the YouTube.com domain.
-
-    Example:
-        >>> url = "https://www.youtube.com/watch?v=abcdef12345"
-        >>> extract_youtube_video_id(url)
-        'abcdef12345'
 
     Note:
         This function assumes that the provided URL is a valid YouTube video URL and follows the standard format
@@ -56,9 +44,6 @@ def get_transcript(url: str) -> str:
     """
     Retrieves the transcribed text from a YouTube video.
 
-    This function takes a YouTube video URL as input, extracts the video ID, and fetches the transcribed text of the video
-    in English (assuming English is one of the available languages). The transcribed text is returned as a single string.
-
     Args:
         url (str): A string containing the YouTube video URL.
 
@@ -67,11 +52,6 @@ def get_transcript(url: str) -> str:
 
     Raises:
         TranscriptsDisabled: If the video has no available transcript.
-
-    Example:
-        >>> url = "https://www.youtube.com/watch?v=abcdef12345"
-        >>> get_transcript(url)
-        'This is the transcribed text of the video.'
 
     Note:
         This function relies on the 'extract_youtube_video_id' function to extract the video ID from the URL.
@@ -83,10 +63,7 @@ def get_transcript(url: str) -> str:
     try:
         # Fetch the subtitles for the video in English
         subs = yt.get_transcript(video_id, languages=['en'])
-    except yt.TranscriptsDisabled:
-        raise yt.TranscriptsDisabled("No transcript available for this video.") # call imported transcript error
+    except TranscriptsDisabled:
+        raise TranscriptsDisabled("No transcript available for this video.") # call imported transcript error
 
     return ' '.join(f"[{subtitle['start']}] {subtitle['text']}" for subtitle in subs) # generator expression https://python-reference.readthedocs.io/en/latest/docs/comprehensions/gen_expression.html
-
-    
-print(get_transcript("https://www.youtube.com/watch?v=imAYfKW1WG8"))
