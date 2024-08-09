@@ -1,18 +1,13 @@
 # Python imports
 import re
-import os
 from urllib.parse import urlparse, parse_qs
 
 # Third-party imports
-import openai
 from youtube_transcript_api import YouTubeTranscriptApi as yt
 from youtube_transcript_api._errors import TranscriptsDisabled
 
 # Local imports
 import configure
-
-path = os.path.dirname(os.path.abspath(__file__))
-openai.api_key = configure.get_credentials(path + '/.secret/keys.json')['OpenAI']
 
 def extract_youtube_video_id(url: str) -> str:
     """
