@@ -82,32 +82,73 @@ def final_summary(concatenated_summaries: str, medium: str) -> str:
     )
     return 1 #response.choices[0].message.content
 
+########################################################
+# Asynchronous summary
+########################################################
+import aiohttp
+import asyncio  
+
+async def async_chunk_summary(session: aiohttp.ClientSession, chunk: str) -> str:
+    messages = [{"role": "user", "content": f"Write a concise but descriptive summary of this segment based on the following text: {chunk}"}]
+    
+    async with session.post(
+        'https://api.openai.com/v1/chat/completions',
+        json={"model": "gpt-3.5-turbo", "messages": messages},
+        headers={"Authorization": f"Bearer {openai.api_key}"}
+    ) as response:
+        response = await response.json()
+        return response['choices'][0]['message']['content'] # An issue I ran into was that the coroutine was never awaited when using `return await response.json()...`. Had await reponse in a variable to fix.
+
+    
+    
+async def async_concatenate_summaries(chunk_list: list[str]) -> str:
+    async with aiohttp.ClientSession() as session:
+        tasks = [async_chunk_summary(session, chunk) for chunk in chunk_list]
+        summaries = await asyncio.gather(*tasks)
+    return " ".join(summaries)
+
+def async_summarize(text: str, medium: str, overlap: int, mode: str, language: str = "English") -> str:
+    chunk_list = random_chunks(text) if mode == "random" else create_chunks(text, overlap)
+    concatenated_summaries = asyncio.run(async_concatenate_summaries(chunk_list))
+    complete_summary = final_summary(concatenated_summaries, medium)
+    return translate(target=language, text=complete_summary) if language.lower() != "english" else complete_summary
 
 ########################################################
-# Performance profiling
+# Performance profiling - https://realpython.com/python-profiling/
 ########################################################
 from cProfile import Profile
 from pstats import SortKey, Stats
 
-with Profile() as profile:
+def log_profile(mode: str): 
+    with Profile() as profile:
 
-    # Open the log file in write mode
-    with open('src/utils/logs/summary_profiling.log', 'w') as log_file:
+        # Open log file in write mode
+        with open(f"src/utils/logs/{mode}_summary_profiling.log", 'w') as log_file:
 
-        # Redirect stdout to the log file
-        import sys
-        original_stdout = sys.stdout
-        sys.stdout = log_file
+            import sys
+            original_stdout = sys.stdout
+            sys.stdout = log_file # redirect stdout to log file
 
-        summarize(text=video.get_transcript('https://www.youtube.com/watch?v=imAYfKW1WG8'), medium='video', overlap=40, mode='', language='english')
-        stats = Stats(profile)  # Profile stats
-        stats.strip_dirs()  # Strip directories
-        stats.sort_stats(SortKey.TIME)  # Sort by time
+            text = video.get_transcript('https://www.youtube.com/watch?v=imAYfKW1WG8')
+            args = [text, 'video', 40, '', 'english'] # 40 is the overlap. args to unpack for summarize()
 
-        print(f"Profile: {profile}")
-        stats.print_stats()  # Print stats
-        
-        # Restore stdout
-        sys.stdout = original_stdout
+            if mode != "async":
+                summarize(*args) # unpack args
+            else:
+                async_summarize(*args) 
+                
+            stats = Stats(profile)  # profile stats
+            stats.strip_dirs()  # strip directories
+            stats.sort_stats(SortKey.TIME)  # sort by time
+
+            print(f"Profile: {profile}")
+            stats.print_stats()  # print stats
+            
+            # restore stdout
+            sys.stdout = original_stdout
+
+# Run profiling
+log_profile("async") 
+log_profile("regular")
     
 ########################################################
