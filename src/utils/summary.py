@@ -1,41 +1,82 @@
+# Standard imports
+import os
+
+# Third party imports
 import openai
+
+# Local imports
 from chunker import create_chunks, random_chunks
 from configure import get_credentials
 from translate import translate
 
+path = os.path.dirname(os.path.abspath(__file__))
+openai.api_key = get_credentials(path + '/.secret/keys.json')['OpenAI']
 
-def run(text, medium, overlap, mode, lang='English', path_to_credentials='c:/Users/Adam/repos/summary-generator/.secret/keys.json'):
-    lang = lang
-    if mode != 'random':
-        chunk_list = create_chunks(text, overlap)
-    else:
-        chunk_list = random_chunks(text)
-    
-    summary_list = []
+def summarize(text: str, medium: str, overlap: int, mode: str, language: str = 'English') -> str:
+    """
+    Summarize text and optionally translate the summary.
 
-    openai.api_key = get_credentials(path_to_credentials)['openai']
+    Args:
+        text (str): Input text to summarize.
+        medium (str): Type of media (e.g., 'video', 'article').
+        overlap (int): Overlap for chunk creation.
+        mode (str): Chunking mode ('random' or other).
+        language (str): Target language for translation.
 
-    for chunk in chunk_list:
+    Returns:
+        str: Summarized and optionally translated text.
+    """
+    chunk_list = random_chunks(text) if mode == 'random' else create_chunks(text, overlap)
+    concatenated_summaries = concatenate_summaries(chunk_list)
+    final_summary = final_summary(concatenated_summaries, medium)
+    return translate(target=language, text=final_summary) if language.lower() != 'english' else final_summary
 
-        #Initialize prompt with instructions and text
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages = [{"role": "user", "content" : f"Please summarize this section of a {medium}, based on the following text in 3 sentences or less: {chunk}" }])
+def chunk_summary(chunk: str) -> str:
+    """
+    Generate a concise summary of a given text chunk using OpenAI's GPT-3.5-turbo model.
 
-        chunk_summary = response['choices'][0]['message']['content']
-        summary_list.append(chunk_summary)
+    Args:
+        chunk (str): A segment of text to be summarized.
 
-    summary_concatenated = ""
-    for chunk_summary in summary_list:
-        summary_concatenated+= ' ' + chunk_summary
+    Returns:
+        str: A concise summary of the input text chunk.
 
+    This function sends a request to OpenAI's API to generate a summary
+    of the provided text chunk using the GPT-3.5-turbo model.
+    """
+    messages = [{"role": "user", "content": f"Write a concise but descriptive summary of this segment based on the following text: {chunk}"}]
     response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-         messages=[{"role": "user", "content": f"Please give a thorough and detailed synopsis of this {medium}, based on the following description. Fix all grammar and spelling errors. Write fluently and make it cohesive. Provide a few bullet points at the end with key points/moments. Don't overuse the word {medium}. Add process bullet points if it appears to be a tutorial. Highlight and give specific details around a key moment: {summary_concatenated}"}])
+        model="gpt-3.5-turbo",
+        messages=messages
+    )
+    return response['choices'][0]['message']['content']
 
-    summary = response['choices'][0]['message']['content']
+def concatenate_summaries(chunk_list: list[str]) -> str:
+    """
+    Concatenate summaries of text chunks into a single string.
 
-    if lang.lower() != 'english':
-        summary = translate(lang, summary)
+    Args:
+        chunk_list (list[str]): List of text chunks to summarize.
 
-    return summary
+    Returns:
+        str: Concatenated summaries of all chunks.
+    """
+    return " ".join([chunk_summary(chunk) for chunk in chunk_list])
+
+def final_summary(concatenated_summaries: str, medium: str) -> str:
+    """
+    Generate a final, detailed summary of the content based on concatenated summaries.
+
+    Args:
+        concatenated_summaries (str): Combined summaries of content chunks.
+        medium (str): Type of media (e.g., 'video', 'article').
+
+    Returns:
+        str: Comprehensive summary with key points and details.
+    """
+    messages = [{"role": "user", "content": f"Provide a detailed synopsis of this {medium}: {concatenated_summaries}"}]
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=messages
+    )
+    return response['choices'][0]['message']['content']
