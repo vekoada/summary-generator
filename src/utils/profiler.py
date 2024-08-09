@@ -14,14 +14,14 @@ def log_profile(mode: str):
     with Profile() as profile:
 
         # Open log file in write mode
-        with open(f"src/utils/logs/groq_{mode}_summary_profiling.log", 'w') as log_file:
+        with open(f"src/utils/logs/gpt-4o-mini_{mode}_summary_profiling.log", 'w') as log_file:
 
             import sys
             original_stdout = sys.stdout
             sys.stdout = log_file # redirect stdout to log file
 
             text = get_transcript('https://www.youtube.com/watch?v=imAYfKW1WG8')
-            args = [text, 'video'] # args to unpack for summarize()
+            args = [text, 'video', 'openai'] # args to unpack for summarize()
 
             if mode != "async":
                 summarize(*args) # unpack args

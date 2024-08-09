@@ -20,7 +20,7 @@ openai = OpenAI(api_key=get_credentials(path + '/.secret/keys.json')['OpenAI'])
 model_config = {
     "openai": {
         "endpoint": "https://api.openai.com/v1/chat/completions",
-        "model": "gpt-3.5-turbo",
+        "model": "gpt-4o-mini",
         "key": openai.api_key
     },
     "groq": {
@@ -31,13 +31,14 @@ model_config = {
 }
 
 
-def async_summarize(text: str, medium: str, overlap: int = 50, mode: str = "standard", language: str = "English") -> str:
+def async_summarize(text: str, medium: str, api: str = "groq", overlap: int = 50, mode: str = "standard", language: str = "English") -> str:
     """
     Asynchronously summarize text and optionally translate.
 
     Args:
         text (str): Input text to summarize.
         medium (str): Type of media (e.g., 'video', 'article').
+        api (str, optional): API to use ('groq' or 'openai'). Defaults to 'groq'.
         overlap (int, optional): Overlap for chunk creation. Defaults to 50.
         mode (str, optional): Chunking mode ('random' or 'standard'). Defaults to "standard".
         language (str, optional): Target language for translation. Defaults to "English".
@@ -46,7 +47,7 @@ def async_summarize(text: str, medium: str, overlap: int = 50, mode: str = "stan
         str: Summarized and optionally translated text.
     """
     chunk_list = random_chunks(text) if mode == "random" else create_chunks(text, overlap)
-    concatenated_summaries = asyncio.run(async_concatenate_summaries(chunk_list)) # All async functions are awaited here
+    concatenated_summaries = asyncio.run(async_concatenate_summaries(chunk_list, api)) # All async functions are awaited here
     complete_summary = final_summary(concatenated_summaries, medium)
     return translate(target=language, text=complete_summary) if language.lower() != "english" else complete_summary
 
@@ -82,24 +83,25 @@ async def async_chunk_summary(session: aiohttp.ClientSession, chunk: str, api: s
             headers={"Authorization": f"Bearer {key}"}
         ) as response:
             response.raise_for_status() # raise an error if the response is not successful
-            response_data = await response.json()
+            response_data = await response.json()   
             return response_data['choices'][0]['message']['content'] # An issue I ran into was that the coroutine was never awaited when using `return await response.json()...`. Had await reponse in a variable to fix.
     except aiohttp.ClientError as e:
         raise ValueError(f"Error communicating with the API: {str(e)}")
     except (KeyError, IndexError) as e:
         raise ValueError(f"Unexpected response format from the API: {str(e)}") # expected format: {"choices": [{"message": {"content": "summary"}}]}
 
-async def async_concatenate_summaries(chunk_list: list[str]) -> str:
+async def async_concatenate_summaries(chunk_list: list[str], api: str = "groq") -> str:
     """
     Asynchronously summarize and concatenate text chunks.
 
     Args:
         chunk_list (list[str]): List of text chunks to summarize.
+        api (str, optional): API to use ('groq' or 'openai'). Defaults to 'groq'.
 
     Returns:
         str: Concatenated summaries of all chunks.
     """
     async with aiohttp.ClientSession() as session:
-        tasks = [async_chunk_summary(session, chunk) for chunk in chunk_list]
+        tasks = [async_chunk_summary(session, chunk, api) for chunk in chunk_list]
         summaries = await asyncio.gather(*tasks)
     return " ".join(summaries)

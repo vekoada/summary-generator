@@ -18,7 +18,7 @@ openai = OpenAI(api_key=get_credentials(path + '/.secret/keys.json')['OpenAI'])
 model_config = {
     "openai": {
         "endpoint": "https://api.openai.com/v1/chat/completions",
-        "model": "gpt-3.5-turbo",
+        "model": "gpt-4o-mini",
         "key": openai.api_key
     },
     "groq": {
@@ -27,13 +27,14 @@ model_config = {
         "key": groq.api_key
     }
 }
-def summarize(text: str, medium: str, overlap: int = 50, mode: str = "standard", language: str = 'English') -> str:
+def summarize(text: str, medium: str, api: str = "groq", overlap: int = 50, mode: str = "standard", language: str = 'English') -> str:
     """
     Summarize text and optionally translate the summary.
 
     Args:
         text (str): Input text to summarize.
         medium (str): Type of media (e.g., 'video', 'article').
+        api (str): API to use for summarization. Options are "groq" and "openai". Defaults to "groq".
         overlap (int): Overlap for chunk creation. Defaults to 50.
         mode (str): Chunking mode ('random' or other). Defaults to 'standard'.
         language (str): Target language for translation. Defaults to 'English'.
@@ -42,16 +43,17 @@ def summarize(text: str, medium: str, overlap: int = 50, mode: str = "standard",
         str: Summarized and optionally translated text.
     """
     chunk_list = random_chunks(text) if mode == 'random' else create_chunks(text, overlap)
-    concatenated_summaries = concatenate_summaries(chunk_list)
-    complete_summary = final_summary(concatenated_summaries, medium)
+    concatenated_summaries = concatenate_summaries(chunk_list, api)
+    complete_summary = final_summary(concatenated_summaries, medium, api)
     return translate(target=language, text=complete_summary) if language.lower() != 'english' else complete_summary
 
-def chunk_summary(chunk: str) -> str:
+def chunk_summary(chunk: str, api: str = "groq") -> str:
     """
-    Generate a concise summary of a given text chunk using OpenAI's GPT-3.5-turbo model.
+    Generate a concise summary of a given text chunk using the specified API.
 
     Args:
         chunk (str): A segment of text to be summarized.
+        api (str): API to use for summarization. Options are "groq" and "openai". Defaults to "groq".
 
     Returns:
         str: A concise summary of the input text chunk.
@@ -59,24 +61,42 @@ def chunk_summary(chunk: str) -> str:
     This function sends a request to OpenAI's API to generate a summary
     of the provided text chunk using the GPT-3.5-turbo model.
     """
-    messages = [{"role": "user", "content": f"Write a concise but descriptive summary of this segment based on the following text: {chunk}"}]
-    response = openai.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=messages
-    )
-    return response.choices[0].message.content
+    if api not in model_config:
+        raise ValueError(f"Invalid API specified. Possible values are: {', '.join(model_config.keys())}")
 
-def concatenate_summaries(chunk_list: list[str]) -> str:
+    config = model_config[api]
+    endpoint = config["endpoint"]
+    model = config["model"]
+    key = config["key"]
+    
+    messages = [{"role": "user", "content": f"Write a concise but descriptive summary of this segment based on the following text: {chunk}"}]
+
+    try:
+        response = requests.post(
+            url=endpoint,
+            json={"model": model, "messages": messages},
+            headers={"Authorization": f"Bearer {key}"}
+        )
+        response.raise_for_status()
+        response_data = response.json()
+        return response_data['choices'][0]['message']['content']
+    except requests.RequestException as e:
+        raise ValueError(f"Error communicating with the API: {str(e)}")
+    except (KeyError, IndexError) as e:
+        raise ValueError(f"Unexpected response format from the API: {str(e)}")
+
+def concatenate_summaries(chunk_list: list[str], api: str = "groq") -> str:
     """
     Concatenate summaries of text chunks into a single string.
 
     Args:
         chunk_list (list[str]): List of text chunks to summarize.
+        api (str): API to use for summarization. Options are "groq" and "openai". Defaults to "groq".
 
     Returns:
         str: Concatenated summaries of all chunks.
     """
-    return " ".join([chunk_summary(chunk) for chunk in chunk_list])
+    return " ".join([chunk_summary(chunk, api) for chunk in chunk_list])
 
 def final_summary(concatenated_summaries: str, medium: str, api: str = 'groq') -> str: # async_summary.py relies on this function
     """
@@ -96,13 +116,13 @@ def final_summary(concatenated_summaries: str, medium: str, api: str = 'groq') -
     if api not in model_config:
         raise ValueError(f"Invalid API specified. Possible values are: {', '.join(model_config.keys())}")
 
-    messages = [{"role": "user", "content": f"Provide a detailed synopsis of this {medium}: {concatenated_summaries}"}]
-
     config = model_config[api]
     endpoint = config["endpoint"]
     model = config["model"]
     key = config["key"]
-    
+
+    messages = [{"role": "user", "content": f"Provide a detailed synopsis of this {medium}: {concatenated_summaries}"}]
+
     try:
         response = requests.post(
             url=endpoint,
