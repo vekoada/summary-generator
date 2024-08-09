@@ -57,7 +57,7 @@ def extract_youtube_video_id(url: str) -> str:
 
     return video_id
 
-def get_text(url: str) -> str:
+def get_transcript(url: str) -> str:
     """
     Retrieves the transcribed text from a YouTube video.
 
@@ -70,28 +70,28 @@ def get_text(url: str) -> str:
     Returns:
         str: The transcribed text of the video as a single string.
 
+    Raises:
+        TranscriptsDisabled: If the video has no available transcript.
+
     Example:
         >>> url = "https://www.youtube.com/watch?v=abcdef12345"
-        >>> get_text(url)
+        >>> get_transcript(url)
         'This is the transcribed text of the video.'
 
     Note:
-        This function relies on the 'extract_id' function to extract the video ID from the URL. It also assumes that the
-        YouTube video has English subtitles available.
-
+        This function relies on the 'extract_youtube_video_id' function to extract the video ID from the URL.
+        It attempts to fetch English subtitles, but will use any available language if English is not available.
     """
     # Extract the video ID from the URL
     video_id = extract_youtube_video_id(url)
 
-    # Fetch the subtitles for the video in English
-    subs = yt.get_transcript(video_id=video_id, languages=['en'])
+    try:
+        # Fetch the subtitles for the video in English
+        subs = yt.get_transcript(video_id, languages=['en'])
+    except yt.TranscriptsDisabled:
+        raise yt.TranscriptsDisabled("No transcript available for this video.") # call imported transcript error
 
-    # Build a single text string from the list of subtitle dictionaries
-    text = ''
-    for subtitle in subs:
-        text += '{} '.format(subtitle['text'])
-
-    return text
+    return ' '.join(f"[{subtitle['start']}] {subtitle['text']}" for subtitle in subs) # generator expression https://python-reference.readthedocs.io/en/latest/docs/comprehensions/gen_expression.html
 
     
-print(get_text("https://www.youtube.com/watch?v=imAYfKW1WG8"))
+print(get_transcript("https://www.youtube.com/watch?v=imAYfKW1WG8"))
