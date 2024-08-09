@@ -1,4 +1,4 @@
-.secret/keys.json
+src/utils/.secret/keys.json
 *.txt
 *.pyc
 *.m4a
