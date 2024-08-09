@@ -1,0 +1,612 @@
+Profile: <cProfile.Profile object at 0x0000023496070130>
+         93303 function calls (93185 primitive calls) in 33.883 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+      224   32.107    0.143   32.107    0.143 {method 'read' of '_ssl._SSLSocket' objects}
+       14    0.751    0.054    0.751    0.054 {method 'do_handshake' of '_ssl._SSLSocket' objects}
+       14    0.564    0.040    0.564    0.040 {method 'connect' of '_socket.socket' objects}
+       14    0.118    0.008    0.118    0.008 {built-in method _socket.getaddrinfo}
+      495    0.013    0.000    0.013    0.000 {method 'decompress' of 'zlib.Decompress' objects}
+     3875    0.011    0.000    0.040    0.000 <frozen _collections_abc>:859(__iter__)
+     3626    0.010    0.000    0.026    0.000 <frozen os>:674(__getitem__)
+       28    0.009    0.000    0.048    0.002 request.py:2499(getproxies_environment)
+      541    0.009    0.000    0.009    0.000 {method 'split' of 'str' objects}
+      501    0.008    0.000    0.010    0.000 {method 'sub' of 're.Pattern' objects}
+     3626    0.007    0.000    0.016    0.000 <frozen os>:748(encodekey)
+       14    0.007    0.000    0.007    0.000 models.py:909(text)
+       14    0.006    0.000    0.006    0.000 {function socket.close at 0x000002349329F380}
+       48    0.006    0.000    0.008    0.000 url.py:227(_encode_invalid_chars)
+       28    0.006    0.000    0.006    0.000 {built-in method nt.stat}
+     3626    0.005    0.000    0.007    0.000 <frozen os>:742(check_str)
+       26    0.005    0.000    0.005    0.000 {method 'write' of '_ssl._SSLSocket' objects}
+7528/7472    0.004    0.000    0.006    0.000 {built-in method builtins.isinstance}
+     3528    0.004    0.000    0.004    0.000 <frozen os>:697(__iter__)
+      322    0.004    0.000    0.007    0.000 parse.py:374(urlparse)
+     7587    0.004    0.000    0.004    0.000 {method 'lower' of 'str' objects}
+      509    0.003    0.000    0.016    0.000 response.py:122(decompress)
+       26    0.003    0.000    0.008    0.000 cookiejar.py:466(parse_ns_headers)
+       14    0.003    0.000    0.009    0.001 ssl.py:1368(_real_close)
+       93    0.003    0.000    0.488    0.005 response.py:1143(read_chunked)
+      193    0.003    0.000    0.491    0.003 {method 'join' of 'bytes' objects}
+       14    0.003    0.000    0.007    0.000 feedparser.py:469(_parse_headers)
+      109    0.003    0.000    0.004    0.000 client.py:1242(putheader)
+       42    0.003    0.000    0.003    0.000 {built-in method winreg.QueryValueEx}
+      674    0.003    0.000    0.003    0.000 {method 'match' of 're.Pattern' objects}
+      509    0.002    0.000    0.293    0.001 response.py:1103(_update_chunk_length)
+       28    0.002    0.000    0.002    0.000 socket.py:220(__init__)
+      984    0.002    0.000    0.169    0.000 client.py:624(_safe_read)
+      495    0.002    0.000    0.171    0.000 response.py:1121(_handle_chunk)
+       81    0.002    0.000    0.002    0.000 threading.py:90(RLock)
+      608    0.002    0.000    0.002    0.000 structures.py:46(__setitem__)
+      111    0.002    0.000    0.006    0.000 <frozen _collections_abc>:941(update)
+      158    0.002    0.000    0.002    0.000 __init__.py:91(_replace_charref)
+       28    0.002    0.000    0.002    0.000 {built-in method winreg.OpenKey}
+        1    0.002    0.002   23.170   23.170 sync_summary.py:99(<listcomp>)
+       52    0.002    0.000    0.002    0.000 cookiejar.py:1389(_normalized_cookie_tuples)
+      311    0.002    0.000    0.003    0.000 _policybase.py:293(header_source_parse)
+       28    0.002    0.000    0.013    0.000 feedparser.py:216(_parsegen)
+       56    0.002    0.000    0.003    0.000 message.py:524(get_all)
+       70    0.002    0.000    0.002    0.000 {method 'settimeout' of '_socket.socket' objects}
+      856    0.002    0.000   31.950    0.037 {method 'readline' of '_io.BufferedReader' objects}
+     3742    0.002    0.000    0.002    0.000 {method 'upper' of 'str' objects}
+      224    0.002    0.000   32.110    0.143 ssl.py:1300(recv_into)
+      984    0.002    0.000    0.166    0.000 {method 'read' of '_io.BufferedReader' objects}
+      355    0.002    0.000    0.002    0.000 parse.py:119(_coerce_args)
+      332    0.002    0.000    0.004    0.000 <frozen _collections_abc>:771(get)
+      112    0.002    0.000    0.003    0.000 message.py:489(get)
+      224    0.002    0.000   32.112    0.143 socket.py:692(readinto)
+       14    0.002    0.000    0.002    0.000 client.py:206(_read_headers)
+      437    0.001    0.000    0.001    0.000 {method 'search' of 're.Pattern' objects}
+      168    0.001    0.000    0.004    0.000 queue.py:154(get)
+       56    0.001    0.000    0.005    0.000 cookiejar.py:1486(_cookie_from_cookie_tuple)
+      522    0.001    0.000    0.002    0.000 structures.py:51(__getitem__)
+      154    0.001    0.000    0.003    0.000 queue.py:122(put)
+2873/2859    0.001    0.000    0.001    0.000 {built-in method builtins.len}
+        1    0.001    0.001    0.789    0.789 _transcripts.py:44(fetch)
+       56    0.001    0.000    0.016    0.000 cookiejar.py:949(set_ok)
+1219/1191    0.001    0.000    0.002    0.000 {method 'encode' of 'str' objects}
+       14    0.001    0.000    0.018    0.001 connection.py:324(request)
+      495    0.001    0.000    0.017    0.000 response.py:456(_decode)
+      311    0.001    0.000    0.002    0.000 _collections.py:302(add)
+        1    0.001    0.001    0.001    0.001 {built-in method io.open}
+       56    0.001    0.000    0.004    0.000 cookiejar.py:1015(set_ok_domain)
+      127    0.001    0.000    0.003    0.000 parse.py:841(quote)
+      352    0.001    0.000    0.002    0.000 _collections.py:259(__getitem__)
+        1    0.001    0.001    0.779    0.779 _transcripts.py:81(_fetch_video_html)
+        1    0.001    0.001    0.004    0.004 _transcripts.py:352(<listcomp>)
+      449    0.001    0.000    0.002    0.000 _policybase.py:281(_sanitize_header)
+       14    0.001    0.000    0.757    0.054 ssl.py:1018(_create)
+      224    0.001    0.000   32.108    0.143 ssl.py:1158(read)
+       28    0.001    0.000    0.009    0.000 url.py:369(parse_url)
+       14    0.001    0.000   31.695    2.264 connection.py:440(getresponse)
+      168    0.001    0.000    0.002    0.000 enum.py:686(__call__)
+      353    0.001    0.000    0.001    0.000 feedparser.py:77(readline)
+       42    0.001    0.000    0.492    0.012 models.py:890(content)
+      121    0.001    0.000    0.005    0.000 cookiejar.py:620(request_host)
+      127    0.001    0.000    0.002    0.000 parse.py:917(quote_from_bytes)
+       14    0.001    0.000    0.001    0.000 {method '_wrap_socket' of '_ssl._SSLContext' objects}
+       14    0.001    0.000   33.730    2.409 sessions.py:673(send)
+      993    0.001    0.000    0.001    0.000 {method 'startswith' of 'str' objects}
+     2097    0.001    0.000    0.001    0.000 {method 'append' of 'list' objects}
+       14    0.001    0.000   33.825    2.416 sessions.py:500(request)
+       14    0.001    0.000    0.004    0.000 _collections.py:337(extend)
+       14    0.001    0.000    1.451    0.104 connection.py:614(connect)
+       28    0.001    0.000    0.019    0.001 cookiejar.py:1599(make_cookies)
+       14    0.001    0.000    0.001    0.000 poolmanager.py:96(_default_key_normalizer)
+     1877    0.001    0.000    0.001    0.000 {method 'decode' of 'bytes' objects}
+      196    0.001    0.000    0.001    0.000 __init__.py:272(_compile)
+       14    0.001    0.000    0.001    0.000 socket.py:303(makefile)
+      109    0.001    0.000    0.005    0.000 connection.py:310(putheader)
+       13    0.001    0.000    0.001    0.000 decoder.py:343(raw_decode)
+      353    0.001    0.000    0.002    0.000 feedparser.py:127(__next__)
+       98    0.001    0.000    0.005    0.000 sessions.py:61(merge_setting)
+      126    0.001    0.000    0.002    0.000 parse.py:164(hostname)
+       14    0.001    0.000    0.035    0.002 sessions.py:457(prepare_request)
+      140    0.001    0.000    0.001    0.000 parse.py:205(_hostinfo)
+       14    0.001    0.000    0.761    0.054 connection.py:732(_ssl_wrap_socket_and_match_hostname)
+       30    0.001    0.000    0.002    0.000 cookiejar.py:150(_str2time)
+       14    0.001    0.000    0.007    0.001 connectionpool.py:178(__init__)
+       14    0.001    0.000   33.176    2.370 connectionpool.py:598(urlopen)
+       56    0.001    0.000    0.001    0.000 cookiejar.py:761(__init__)
+      349    0.001    0.000    0.001    0.000 {built-in method _abc._abc_instancecheck}
+       98    0.001    0.000    0.002    0.000 utils.py:345(to_key_val_list)
+       14    0.001    0.000   33.165    2.369 connectionpool.py:380(_make_request)
+      463    0.001    0.000    0.001    0.000 utils.py:51(_has_surrogates)
+       14    0.001    0.000    0.688    0.049 connection.py:27(create_connection)
+        1    0.001    0.001    0.001    0.001 {method 'feed' of 'xml.etree.ElementTree.XMLParser' objects}
+       12    0.001    0.000   32.862    2.738 api.py:103(post)
+      449    0.001    0.000    0.003    0.000 _policybase.py:311(header_fetch_parse)
+       55    0.001    0.000    0.003    0.000 cookiejar.py:1261(__init__)
+      456    0.001    0.000    0.001    0.000 structures.py:58(<genexpr>)
+       14    0.001    0.000   33.219    2.373 adapters.py:613(send)
+      506    0.001    0.000    0.001    0.000 {built-in method builtins.getattr}
+       14    0.001    0.000    0.008    0.001 utils.py:204(get_netrc_auth)
+       28    0.001    0.000    0.037    0.001 cookiejar.py:1680(extract_cookies)
+       14    0.001    0.000    0.001    0.000 {method 'setsockopt' of '_socket.socket' objects}
+        1    0.001    0.001    0.778    0.778 _transcripts.py:90(_fetch_html)
+      311    0.001    0.000    0.001    0.000 message.py:506(set_raw)
+       26    0.001    0.000    0.006    0.000 ssl.py:1263(sendall)
+       28    0.001    0.000    0.001    0.000 client.py:417(close)
+      308    0.001    0.000    0.001    0.000 threading.py:359(notify)
+       14    0.001    0.000    0.003    0.000 message.py:486(<listcomp>)
+       14    0.001    0.000   31.682    2.263 client.py:311(begin)
+      427    0.001    0.000    0.001    0.000 {built-in method __new__ of type object at 0x00007FFD3B5B8F90}
+       28    0.001    0.000    0.001    0.000 <frozen ntpath>:319(expanduser)
+       14    0.001    0.000    0.004    0.000 models.py:483(prepare_headers)
+       42    0.001    0.000    0.001    0.000 threading.py:236(__init__)
+       56    0.001    0.000    0.002    0.000 url.py:303(_normalize_host)
+       14    0.001    0.000    0.002    0.000 response.py:564(__init__)
+       12    0.001    0.000    0.001    0.000 encoder.py:205(iterencode)
+      113    0.001    0.000    0.003    0.000 cookiejar.py:677(escape_path)
+       83    0.001    0.000    0.007    0.000 structures.py:40(__init__)
+       14    0.001    0.000   31.660    2.261 client.py:278(_read_status)
+      557    0.001    0.000    0.001    0.000 {built-in method builtins.hasattr}
+      826    0.001    0.000    0.001    0.000 {method 'partition' of 'str' objects}
+       95    0.001    0.000    0.001    0.000 <frozen _collections_abc>:778(__contains__)
+       28    0.001    0.000    0.001    0.000 {method 'readlines' of '_io._IOBase' objects}
+      576    0.001    0.000    0.001    0.000 {method 'find' of 'str' objects}
+      322    0.001    0.000    0.001    0.000 threading.py:264(__enter__)
+      180    0.001    0.000    0.001    0.000 cookiejar.py:535(is_HDN)
+       60    0.001    0.000    0.001    0.000 cookiejar.py:1667(set_cookie)
+      140    0.001    0.000    0.001    0.000 utils.py:1045(_validate_header_part)
+      349    0.001    0.000    0.001    0.000 <frozen abc>:117(__instancecheck__)
+       41    0.001    0.000    0.003    0.000 cookies.py:521(cookiejar_from_dict)
+       60    0.001    0.000    0.001    0.000 cookiejar.py:550(domain_match)
+      734    0.001    0.000    0.001    0.000 {method 'join' of 'str' objects}
+       26    0.001    0.000    0.003    0.000 adapters.py:202(__init__)
+       42    0.001    0.000    0.001    0.000 idna.py:145(encode)
+       14    0.001    0.000    0.002    0.000 client.py:1086(putrequest)
+       14    0.001    0.000    0.029    0.002 utils.py:114(proxy_bypass)
+     1680    0.001    0.000    0.001    0.000 {built-in method builtins.ord}
+      178    0.001    0.000    0.002    0.000 cookies.py:49(get_full_url)
+      308    0.001    0.000    0.001    0.000 threading.py:279(_is_owned)
+       60    0.001    0.000    0.001    0.000 cookies.py:349(set_cookie)
+      921    0.001    0.000    0.001    0.000 {method 'get' of 'dict' objects}
+      322    0.001    0.000    0.001    0.000 threading.py:267(__exit__)
+     1111    0.001    0.000    0.001    0.000 {method 'strip' of 'str' objects}
+   111/91    0.001    0.000    0.001    0.000 cookiejar.py:1227(deepvalues)
+       14    0.001    0.000    0.001    0.000 {built-in method zlib.decompressobj}
+       56    0.001    0.000    0.002    0.000 message.py:591(get_content_type)
+       14    0.001    0.000    0.120    0.009 socket.py:945(getaddrinfo)
+       57    0.001    0.000    0.003    0.000 cookiejar.py:647(request_path)
+       14    0.001    0.000    0.008    0.001 models.py:409(prepare_url)
+       24    0.001    0.000    0.001    0.000 {built-in method time.localtime}
+       14    0.001    0.000    0.014    0.001 connectionpool.py:1178(_close_pool_connections)
+       26    0.000    0.000    0.001    0.000 retry.py:198(__init__)
+      199    0.000    0.000    0.001    0.000 util.py:19(to_str)
+       14    0.000    0.000    0.001    0.000 parse.py:937(urlencode)
+       30    0.000    0.000    0.003    0.000 cookiejar.py:232(http2time)
+      322    0.000    0.000    0.001    0.000 queue.py:248(_qsize)
+       60    0.000    0.000    0.001    0.000 copy.py:66(copy)
+      140    0.000    0.000    0.002    0.000 socket.py:99(_intenum_converter)
+      545    0.000    0.000    0.000    0.000 {method 'split' of 'bytes' objects}
+      195    0.000    0.000    0.000    0.000 video.py:69(<genexpr>)
+       26    0.000    0.000    0.001    0.000 poolmanager.py:200(__init__)
+      109    0.000    0.000    0.001    0.000 connection.py:359(<genexpr>)
+       14    0.000    0.000    0.689    0.049 connection.py:192(_new_conn)
+       14    0.000    0.000    0.000    0.000 {built-in method today}
+       14    0.000    0.000    0.058    0.004 sessions.py:750(merge_environment_settings)
+      126    0.000    0.000    0.001    0.000 url.py:332(_idna_encode)
+       52    0.000    0.000    0.008    0.000 cookiejar.py:1578(_cookies_from_attrs_set)
+       60    0.000    0.000    0.007    0.000 cookiejar.py:726(is_third_party)
+       13    0.000    0.000    0.006    0.000 sessions.py:390(__init__)
+      168    0.000    0.000    0.000    0.000 enum.py:1091(__new__)
+      224    0.000    0.000    0.001    0.000 {method '_checkReadable' of '_io._IOBase' objects}
+       14    0.000    0.000    0.001    0.000 response.py:316(__init__)
+       14    0.000    0.000    0.032    0.002 utils.py:765(should_bypass_proxies)
+       60    0.000    0.000    0.001    0.000 cookiejar.py:691(reach)
+       28    0.000    0.000    0.002    0.000 utils.py:838(select_proxy)
+       14    0.000    0.000    0.017    0.001 parser.py:59(parsestr)
+       14    0.000    0.000    0.020    0.001 client.py:224(parse_headers)
+       14    0.000    0.000    0.028    0.002 adapters.py:359(build_response)
+      112    0.000    0.000    0.001    0.000 <frozen _collections_abc>:790(items)
+       28    0.000    0.000    0.001    0.000 url.py:263(_remove_path_dot_segments)
+      194    0.000    0.000    0.002    0.000 __init__.py:178(sub)
+       14    0.000    0.000    0.001    0.000 connectionpool.py:1050(_new_conn)
+       70    0.000    0.000    0.000    0.000 structures.py:57(__iter__)
+       14    0.000    0.000    0.003    0.000 utils.py:76(proxy_bypass_registry)
+       14    0.000    0.000    0.002    0.000 models.py:494(prepare_body)
+      109    0.000    0.000    0.000    0.000 {method 'fullmatch' of 're.Pattern' objects}
+       14    0.000    0.000    0.002    0.000 cookiejar.py:1356(add_cookie_header)
+       28    0.000    0.000    0.039    0.001 cookies.py:124(extract_cookies_to_jar)
+       14    0.000    0.000    0.000    0.000 {built-in method _thread.allocate_lock}
+       14    0.000    0.000    0.000    0.000 client.py:1213(_encode_request)
+       11    0.000    0.000   23.157    2.105 sync_summary.py:50(chunk_summary)
+       14    0.000    0.000    0.001    0.000 ssl.py:566(set_alpn_protocols)
+      238    0.000    0.000    0.000    0.000 socket.py:731(readable)
+       56    0.000    0.000    0.000    0.000 timeout.py:109(__init__)
+       14    0.000    0.000    0.001    0.000 feedparser.py:137(__init__)
+       14    0.000    0.000    0.010    0.001 connection.py:275(close)
+       14    0.000    0.000    0.752    0.054 ssl.py:1372(do_handshake)
+       14    0.000    0.000    0.002    0.000 models.py:658(__init__)
+       28    0.000    0.000    0.001    0.000 contextlib.py:141(__exit__)
+       14    0.000    0.000    0.017    0.001 parser.py:41(parse)
+       14    0.000    0.000    0.000    0.000 _collections.py:102(__setitem__)
+      425    0.000    0.000    0.000    0.000 {method 'rstrip' of 'str' objects}
+       12    0.000    0.000   32.861    2.738 api.py:14(request)
+      310    0.000    0.000    0.000    0.000 _collections.py:291(__iter__)
+      355    0.000    0.000    0.000    0.000 {method 'setdefault' of 'dict' objects}
+       14    0.000    0.000    0.758    0.054 ssl_.py:392(ssl_wrap_socket)
+       14    0.000    0.000    0.000    0.000 ssl.py:740(verify_mode)
+       28    0.000    0.000    0.001    0.000 ssl.py:732(verify_mode)
+       55    0.000    0.000    0.000    0.000 cookiejar.py:884(__init__)
+      218    0.000    0.000    0.000    0.000 connection.py:312(<genexpr>)
+       14    0.000    0.000    0.001    0.000 queue.py:34(__init__)
+       14    0.000    0.000    0.019    0.001 models.py:351(prepare)
+       30    0.000    0.000    0.000    0.000 calendar.py:653(timegm)
+       26    0.000    0.000    0.000    0.000 _collections.py:143(clear)
+      123    0.000    0.000    0.001    0.000 {built-in method builtins.any}
+      308    0.000    0.000    0.000    0.000 {method 'acquire' of '_thread.lock' objects}
+       26    0.000    0.000    0.006    0.000 client.py:971(send)
+       14    0.000    0.000   31.684    2.263 client.py:1334(getresponse)
+       14    0.000    0.000    0.008    0.001 poolmanager.py:230(_new_pool)
+       70    0.000    0.000    0.002    0.000 utils.py:1034(check_header_validity)
+       14    0.000    0.000    0.008    0.001 poolmanager.py:331(connection_from_pool_key)
+       26    0.000    0.000    0.001    0.000 _collections.py:84(__init__)
+      154    0.000    0.000    0.000    0.000 queue.py:254(_get)
+       14    0.000    0.000    0.000    0.000 {method 'Close' of 'PyHKEY' objects}
+      322    0.000    0.000    0.000    0.000 {method '__enter__' of '_thread.lock' objects}
+       93    0.000    0.000    0.489    0.005 models.py:816(generate)
+       14    0.000    0.000    0.001    0.000 feedparser.py:100(push)
+       14    0.000    0.000    0.001    0.000 response.py:40(assert_header_parsing)
+       56    0.000    0.000    0.007    0.000 cookiejar.py:983(set_ok_verifiability)
+       93    0.000    0.000    0.488    0.005 response.py:1021(stream)
+       14    0.000    0.000    0.001    0.000 adapters.py:90(_urllib3_request_context)
+        1    0.000    0.000    0.000    0.000 _transcripts.py:133(<listcomp>)
+       56    0.000    0.000    0.000    0.000 message.py:29(_splitparam)
+      224    0.000    0.000    0.000    0.000 {method '_checkClosed' of '_io._IOBase' objects}
+       28    0.000    0.000    0.006    0.000 <frozen genericpath>:16(exists)
+       42    0.000    0.000    0.001    0.000 url.py:326(<listcomp>)
+      154    0.000    0.000    0.000    0.000 queue.py:251(_put)
+       14    0.000    0.000    0.001    0.000 client.py:248(__init__)
+      123    0.000    0.000    0.000    0.000 client.py:1011(_output)
+      358    0.000    0.000    0.000    0.000 {method 'lstrip' of 'str' objects}
+       14    0.000    0.000    0.002    0.000 request.py:2667(getproxies_registry)
+       14    0.000    0.000    0.003    0.000 cookies.py:140(get_cookie_header)
+      500    0.000    0.000    0.000    0.000 ssl.py:1146(_checkClosed)
+       28    0.000    0.000    0.000    0.000 contextlib.py:104(__init__)
+       14    0.000    0.000    0.001    0.000 connection.py:513(__init__)
+       56    0.000    0.000    0.000    0.000 connection.py:163(host)
+       14    0.000    0.000    0.012    0.001 adapters.py:446(get_connection_with_tls_context)
+       30    0.000    0.000    0.001    0.000 cookiejar.py:81(_timegm)
+       14    0.000    0.000    0.000    0.000 client.py:838(__init__)
+      127    0.000    0.000    0.000    0.000 {method 'rstrip' of 'bytes' objects}
+      230    0.000    0.000    0.000    0.000 {method 'endswith' of 'str' objects}
+       14    0.000    0.000    0.007    0.001 connectionpool.py:986(__init__)
+       42    0.000    0.000    0.001    0.000 cookies.py:35(__init__)
+       14    0.000    0.000    0.000    0.000 feedparser.py:52(__init__)
+       14    0.000    0.000    0.004    0.000 _collections.py:242(__init__)
+       28    0.000    0.000    0.000    0.000 url.py:100(__new__)
+      355    0.000    0.000    0.000    0.000 parse.py:108(_noop)
+       26    0.000    0.000    0.002    0.000 adapters.py:240(init_poolmanager)
+       83    0.000    0.000    0.000    0.000 cookiejar.py:1753(__iter__)
+       14    0.000    0.000    0.000    0.000 weakref.py:568(__init__)
+       61    0.000    0.000    0.003    0.000 cookiejar.py:636(eff_request_host)
+      195    0.000    0.000    0.009    0.000 __init__.py:122(unescape)
+       12    0.000    0.000    0.001    0.000 __init__.py:183(dumps)
+        1    0.000    0.000    1.004    1.004 _api.py:114(get_transcript)
+       14    0.000    0.000    0.009    0.001 client.py:957(close)
+       14    0.000    0.000    0.004    0.000 client.py:1032(_send_output)
+       14    0.000    0.000    0.757    0.054 ssl.py:511(wrap_socket)
+       28    0.000    0.000    0.000    0.000 contextlib.py:287(helper)
+       14    0.000    0.000    0.000    0.000 request.py:189(body_to_chunks)
+       14    0.000    0.000    1.451    0.104 connectionpool.py:1091(_validate_conn)
+       56    0.000    0.000    0.003    0.000 cookiejar.py:1004(set_ok_path)
+       28    0.000    0.000    0.001    0.000 cookies.py:542(merge_cookies)
+       70    0.000    0.000    0.001    0.000 {built-in method builtins.next}
+       26    0.000    0.000    0.005    0.000 ssl.py:1236(send)
+       14    0.000    0.000    0.014    0.001 weakref.py:585(__call__)
+       14    0.000    0.000    0.000    0.000 models.py:258(__init__)
+       14    0.000    0.000    0.002    0.000 connection.py:290(putrequest)
+       13    0.000    0.000    0.001    0.000 decoder.py:332(decode)
+       26    0.000    0.000    0.000    0.000 sessions.py:799(mount)
+       28    0.000    0.000    0.000    0.000 typing.py:352(inner)
+       14    0.000    0.000    0.000    0.000 socket.py:680(__init__)
+       28    0.000    0.000    0.001    0.000 cookies.py:358(update)
+       28    0.000    0.000    0.014    0.000 feedparser.py:176(_call_parse)
+       14    0.000    0.000    0.001    0.000 utils.py:1018(get_auth_from_url)
+       60    0.000    0.000    0.001    0.000 cookies.py:43(get_host)
+       14    0.000    0.000    0.010    0.001 poolmanager.py:306(connection_from_context)
+      182    0.000    0.000    0.000    0.000 {method 'rpartition' of 'str' objects}
+      112    0.000    0.000    0.000    0.000 <frozen _collections_abc>:812(__init__)
+       14    0.000    0.000    0.002    0.000 adapters.py:546(request_url)
+       48    0.000    0.000    0.000    0.000 {method 'subn' of 're.Pattern' objects}
+       14    0.000    0.000    0.010    0.001 poolmanager.py:277(connection_from_host)
+      116    0.000    0.000    0.000    0.000 {method 'acquire' of '_thread.RLock' objects}
+       14    0.000    0.000    0.001    0.000 models.py:106(_encode_params)
+       28    0.000    0.000    0.000    0.000 timeout.py:188(clone)
+       14    0.000    0.000    0.000    0.000 socket.py:769(close)
+       14    0.000    0.000    0.001    0.000 response.py:210(_get_decoder)
+       84    0.000    0.000    0.000    0.000 _internal_utils.py:25(to_native_string)
+       41    0.000    0.000    0.000    0.000 hooks.py:15(default_hooks)
+       60    0.000    0.000    0.001    0.000 cookies.py:46(get_origin_req_host)
+       14    0.000    0.000    0.001    0.000 connection.py:133(__init__)
+       14    0.000    0.000    0.000    0.000 ssl_.py:469(is_ipaddress)
+       14    0.000    0.000    0.001    0.000 message.py:243(get_payload)
+       14    0.000    0.000    0.057    0.004 utils.py:826(get_environ_proxies)
+        1    0.000    0.000   32.878   32.878 sync_summary.py:30(summarize)
+       26    0.000    0.000    0.002    0.000 adapters.py:536(close)
+      322    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.lock' objects}
+       13    0.000    0.000    0.002    0.000 sessions.py:794(close)
+      168    0.000    0.000    0.000    0.000 {method 'pop' of 'list' objects}
+       12    0.000    0.000    0.001    0.000 models.py:947(json)
+       42    0.000    0.000    0.001    0.000 sessions.py:84(<listcomp>)
+       42    0.000    0.000    0.001    0.000 message.py:615(get_content_maintype)
+       14    0.000    0.000    0.001    0.000 parse.py:509(urlunparse)
+       14    0.000    0.000    0.000    0.000 {method '_set_alpn_protocols' of '_ssl._SSLContext' objects}
+       14    0.000    0.000    0.001    0.000 response.py:437(_init_decoder)
+       28    0.000    0.000    0.000    0.000 message.py:150(__init__)
+       14    0.000    0.000    0.000    0.000 cookiejar.py:1734(clear_expired_cookies)
+       28    0.000    0.000    0.000    0.000 __init__.py:1467(debug)
+       28    0.000    0.000    0.000    0.000 typing.py:1579(__subclasscheck__)
+       14    0.000    0.000    0.000    0.000 models.py:85(path_url)
+       14    0.000    0.000    0.000    0.000 utils.py:539(get_encoding_from_headers)
+       14    0.000    0.000    0.000    0.000 {method 'getpeername' of '_socket.socket' objects}
+      237    0.000    0.000    0.000    0.000 {method 'items' of 'dict' objects}
+       12    0.000    0.000    0.001    0.000 encoder.py:183(encode)
+       28    0.000    0.000    0.001    0.000 response.py:724(_error_catcher)
+       14    0.000    0.000    0.000    0.000 models.py:207(register_hook)
+       60    0.000    0.000    0.001    0.000 cookies.py:94(origin_req_host)
+       60    0.000    0.000    0.000    0.000 cookies.py:90(unverifiable)
+       14    0.000    0.000    0.000    0.000 parse.py:520(urlunsplit)
+      325    0.000    0.000    0.000    0.000 {method 'popleft' of 'collections.deque' objects}
+        1    0.000    0.000    0.000    0.000 _transcripts.py:278(<dictcomp>)
+       13    0.000    0.000    0.001    0.000 utils.py:900(default_headers)
+       14    0.000    0.000    0.001    0.000 feedparser.py:182(close)
+       14    0.000    0.000    0.002    0.000 connectionpool.py:82(__init__)
+       14    0.000    0.000    0.000    0.000 feedparser.py:69(close)
+       26    0.000    0.000    0.002    0.000 poolmanager.py:268(clear)
+       14    0.000    0.000    0.001    0.000 response.py:118(__init__)
+       14    0.000    0.000    0.757    0.054 ssl_.py:493(_ssl_wrap_socket_impl)
+       14    0.000    0.000    0.024    0.002 request.py:2716(getproxies)
+       28    0.000    0.000    0.001    0.000 typing.py:1304(__instancecheck__)
+       13    0.000    0.000    0.001    0.000 __init__.py:299(loads)
+       14    0.000    0.000    0.001    0.000 ssl.py:503(_encode_hostname)
+       14    0.000    0.000    0.001    0.000 connection.py:93(_set_socket_options)
+       86    0.000    0.000    0.000    0.000 {method 'groups' of 're.Match' objects}
+       56    0.000    0.000    0.000    0.000 cookiejar.py:968(set_ok_version)
+       14    0.000    0.000    0.000    0.000 models.py:334(__init__)
+       78    0.000    0.000    0.000    0.000 retry.py:238(<genexpr>)
+       26    0.000    0.000    0.000    0.000 sessions.py:805(<listcomp>)
+       14    0.000    0.000    0.001    0.000 response.py:624(release_conn)
+       14    0.000    0.000    0.000    0.000 {method 'getsockopt' of '_socket.socket' objects}
+      164    0.000    0.000    0.000    0.000 cookiejar.py:44(_debug)
+       26    0.000    0.000    0.000    0.000 cookiejar.py:1587(_process_rfc2109_cookies)
+      110    0.000    0.000    0.000    0.000 {method 'copy' of 'dict' objects}
+       14    0.000    0.000    0.000    0.000 response.py:668(_init_length)
+       42    0.000    0.000    0.000    0.000 {function HTTPResponse.close at 0x000002349330C220}
+       14    0.000    0.000    0.000    0.000 feedparser.py:195(_new_message)
+       28    0.000    0.000    0.000    0.000 feedparser.py:121(pushlines)
+       14    0.000    0.000    0.000    0.000 timeout.py:172(from_float)
+        3    0.000    0.000    0.000    0.000 parse.py:452(urlsplit)
+      168    0.000    0.000    0.000    0.000 timeout.py:130(_validate_timeout)
+       14    0.000    0.000    0.000    0.000 models.py:572(prepare_content_length)
+       69    0.000    0.000    0.000    0.000 {method 'rfind' of 'str' objects}
+       14    0.000    0.000    0.003    0.000 models.py:610(prepare_cookies)
+       12    0.000    0.000    0.000    0.000 utils.py:135(super_len)
+       16    0.000    0.000    0.000    0.000 parse.py:659(unquote)
+       14    0.000    0.000    0.000    0.000 utils.py:636(unquote_unreserved)
+       14    0.000    0.000    0.000    0.000 models.py:799(iter_content)
+      168    0.000    0.000    0.000    0.000 {method 'pop' of 'dict' objects}
+       14    0.000    0.000    0.000    0.000 _collections.py:95(__getitem__)
+       14    0.000    0.000    0.000    0.000 sessions.py:781(get_adapter)
+       14    0.000    0.000    0.001    0.000 utils.py:774(get_proxy)
+       14    0.000    0.000    0.002    0.000 url.py:351(_encode_target)
+       14    0.000    0.000    0.000    0.000 timeout.py:245(read_timeout)
+       41    0.000    0.000    0.000    0.000 cookies.py:534(<listcomp>)
+       14    0.000    0.000    0.006    0.000 socket.py:495(_real_close)
+       14    0.000    0.000    0.002    0.000 connectionpool.py:259(_get_conn)
+       14    0.000    0.000    0.000    0.000 socket.py:515(family)
+       14    0.000    0.000    0.000    0.000 ssl_.py:177(resolve_cert_reqs)
+      158    0.000    0.000    0.000    0.000 {method 'group' of 're.Match' objects}
+       28    0.000    0.000    0.000    0.000 connectionpool.py:349(_get_timeout)
+       14    0.000    0.000    0.014    0.001 feedparser.py:171(feed)
+       28    0.000    0.000    0.000    0.000 contextlib.py:132(__enter__)
+       14    0.000    0.000    0.001    0.000 sessions.py:159(resolve_redirects)
+       14    0.000    0.000    0.000    0.000 {method 'flush' of 'zlib.Decompress' objects}
+       14    0.000    0.000    0.001    0.000 utils.py:660(requote_uri)
+       14    0.000    0.000    0.000    0.000 cookiejar.py:1297(_cookie_attrs)
+       14    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap>:405(parent)
+       14    0.000    0.000    0.000    0.000 response.py:245(__init__)
+       80    0.000    0.000    0.000    0.000 {built-in method time.time}
+       14    0.000    0.000    0.000    0.000 utils.py:514(_parse_content_type_header)
+       55    0.000    0.000    0.000    0.000 {method 'extend' of 'list' objects}
+       14    0.000    0.000    0.000    0.000 response.py:486(_flush_decoder)
+        1    0.000    0.000    0.000    0.000 chunker.py:4(create_chunks)
+       14    0.000    0.000    0.000    0.000 models.py:997(raise_for_status)
+       14    0.000    0.000    0.000    0.000 {method 'close' of '_io.BufferedReader' objects}
+       26    0.000    0.000    0.000    0.000 adapters.py:140(__init__)
+       30    0.000    0.000    0.000    0.000 cookiejar.py:459(strip_quotes)
+       41    0.000    0.000    0.000    0.000 hooks.py:16(<dictcomp>)
+       14    0.000    0.000    0.000    0.000 response.py:1062(closed)
+       14    0.000    0.000    0.001    0.000 models.py:588(prepare_auth)
+       14    0.000    0.000    0.001    0.000 connectionpool.py:297(_put_conn)
+       14    0.000    0.000    0.000    0.000 {method 'write' of '_io.StringIO' objects}
+       32    0.000    0.000    0.000    0.000 {built-in method builtins.issubclass}
+       14    0.000    0.000    0.004    0.000 client.py:1270(endheaders)
+       14    0.000    0.000    0.000    0.000 poolmanager.py:375(_merge_pool_kwargs)
+        4    0.000    0.000    0.001    0.000 cookiejar.py:1096(return_ok)
+       14    0.000    0.000    0.000    0.000 models.py:393(prepare_method)
+       28    0.000    0.000    0.000    0.000 __init__.py:1734(isEnabledFor)
+      116    0.000    0.000    0.000    0.000 {method 'release' of '_thread.RLock' objects}
+       28    0.000    0.000    0.000    0.000 {method 'read' of '_io.StringIO' objects}
+       26    0.000    0.000    0.000    0.000 cookiejar.py:348(split_header_words)
+       14    0.000    0.000    0.000    0.000 typing.py:1371(__hash__)
+       14    0.000    0.000    0.001    0.000 structures.py:76(copy)
+       14    0.000    0.000    0.000    0.000 client.py:429(flush)
+      123    0.000    0.000    0.000    0.000 {method 'values' of 'collections.OrderedDict' objects}
+       14    0.000    0.000    0.001    0.000 models.py:630(prepare_hooks)
+       42    0.000    0.000    0.000    0.000 utils.py:211(<genexpr>)
+       56    0.000    0.000    0.000    0.000 cookiejar.py:995(set_ok_name)
+      128    0.000    0.000    0.000    0.000 {method 'values' of 'dict' objects}
+       48    0.000    0.000    0.000    0.000 {method 'count' of 'bytes' objects}
+       56    0.000    0.000    0.000    0.000 {method 'count' of 'str' objects}
+       42    0.000    0.000    0.000    0.000 timeout.py:126(resolve_default_timeout)
+       30    0.000    0.000    0.000    0.000 cookiejar.py:136(offset_from_tz_string)
+       14    0.000    0.000    0.000    0.000 client.py:383(_check_close)
+       14    0.000    0.000    0.009    0.001 socket.py:499(close)
+       14    0.000    0.000    0.001    0.000 connectionpool.py:1153(_normalize_host)
+       14    0.000    0.000    0.000    0.000 socket.py:505(detach)
+       14    0.000    0.000    0.000    0.000 socket.py:489(_decref_socketios)
+       14    0.000    0.000    0.000    0.000 adapters.py:304(cert_verify)
+       28    0.000    0.000    0.000    0.000 response.py:1094(supports_chunked_reads)
+       14    0.000    0.000    0.001    0.000 adapters.py:396(build_connection_pool_key_attributes)
+       57    0.000    0.000    0.000    0.000 cookiejar.py:926(is_blocked)
+       14    0.000    0.000    0.000    0.000 <string>:1(<lambda>)
+       28    0.000    0.000    0.000    0.000 {method 'pop' of 'collections.OrderedDict' objects}
+       48    0.000    0.000    0.000    0.000 {method 'decode' of 'bytearray' objects}
+       14    0.000    0.000    0.003    0.000 message.py:478(items)
+       28    0.000    0.000    0.000    0.000 {built-in method _abc._abc_subclasscheck}
+       14    0.000    0.000    0.000    0.000 retry.py:375(_is_method_retryable)
+       14    0.000    0.000    0.000    0.000 parse.py:193(_userinfo)
+       14    0.000    0.000    0.000    0.000 models.py:769(is_redirect)
+       52    0.000    0.000    0.000    0.000 {method '__exit__' of 'memoryview' objects}
+       30    0.000    0.000    0.000    0.000 {method 'index' of 'list' objects}
+      132    0.000    0.000    0.000    0.000 {method 'isascii' of 'str' objects}
+       28    0.000    0.000    0.000    0.000 response.py:394(retries)
+       14    0.000    0.000    0.000    0.000 parse.py:156(username)
+        1    0.000    0.000    0.001    0.001 ElementTree.py:1325(XML)
+       14    0.000    0.000    0.001    0.000 cookiejar.py:1290(_cookies_for_request)
+       28    0.000    0.000    0.000    0.000 <frozen abc>:121(__subclasscheck__)
+       18    0.000    0.000    0.000    0.000 {method 'update' of 'dict' objects}
+       14    0.000    0.000    0.000    0.000 _internal_utils.py:38(unicode_is_ascii)
+       28    0.000    0.000    0.000    0.000 response.py:342(<genexpr>)
+       13    0.000    0.000    0.002    0.000 sessions.py:454(__exit__)
+       14    0.000    0.000    0.000    0.000 sessions.py:91(merge_hooks)
+       56    0.000    0.000    0.000    0.000 cookiejar.py:1075(set_ok_port)
+       14    0.000    0.000    0.001    0.000 sessions.py:724(<listcomp>)
+       28    0.000    0.000    0.000    0.000 structures.py:60(__len__)
+       14    0.000    0.000    0.000    0.000 timeout.py:202(start_connect)
+       14    0.000    0.000    0.000    0.000 client.py:1217(_validate_method)
+       28    0.000    0.000    0.000    0.000 message.py:211(is_multipart)
+       28    0.000    0.000    0.000    0.000 <frozen ntpath>:35(_get_bothseps)
+       12    0.000    0.000    0.000    0.000 encoder.py:105(__init__)
+       14    0.000    0.000    0.000    0.000 retry.py:383(is_retry)
+       28    0.000    0.000    0.000    0.000 {method 'truncate' of '_io.StringIO' objects}
+       14    0.000    0.000    0.000    0.000 feedparser.py:208(_pop_message)
+        1    0.000    0.000    0.008    0.008 _transcripts.py:51(_extract_captions_json)
+       14    0.000    0.000    0.000    0.000 response.py:91(is_response_to_head)
+       14    0.000    0.000    0.000    0.000 sessions.py:107(get_redirect_target)
+       54    0.000    0.000    0.000    0.000 {method '__exit__' of '_thread.RLock' objects}
+       40    0.000    0.000    0.000    0.000 {built-in method sys.audit}
+       14    0.000    0.000    0.000    0.000 message.py:330(set_payload)
+       40    0.000    0.000    0.000    0.000 _request_methods.py:51(__init__)
+       14    0.000    0.000    0.000    0.000 connection.py:268(proxy_is_forwarding)
+       14    0.000    0.000    0.000    0.000 client.py:1234(_validate_host)
+       14    0.000    0.000    0.000    0.000 hooks.py:22(dispatch_hook)
+       14    0.000    0.000    0.000    0.000 socket.py:521(type)
+       14    0.000    0.000    0.000    0.000 response.py:143(flush)
+        1    0.000    0.000    0.000    0.000 _transcripts.py:119(build)
+       28    0.000    0.000    0.000    0.000 {method 'extend' of 'collections.deque' objects}
+       14    0.000    0.000    0.000    0.000 {method 'sort' of 'list' objects}
+       57    0.000    0.000    0.000    0.000 cookiejar.py:941(is_not_allowed)
+       56    0.000    0.000    0.000    0.000 {method 'seek' of '_io.StringIO' objects}
+        1    0.000    0.000    0.000    0.000 parse.py:729(parse_qsl)
+       26    0.000    0.000    0.000    0.000 {method 'clear' of 'collections.OrderedDict' objects}
+       14    0.000    0.000    0.000    0.000 client.py:412(_close_conn)
+       60    0.000    0.000    0.000    0.000 cookies.py:69(is_unverifiable)
+       14    0.000    0.000    0.000    0.000 client.py:1226(_validate_path)
+        1    0.000    0.000    0.001    0.001 cookiejar.py:1272(_cookies_for_domain)
+       56    0.000    0.000    0.000    0.000 cookies.py:117(info)
+       14    0.000    0.000    0.000    0.000 request.py:134(set_file_position)
+       28    0.000    0.000    0.000    0.000 utils.py:743(set_environ)
+       14    0.000    0.000    0.000    0.000 connection.py:103(allowed_gai_family)
+       14    0.000    0.000    0.000    0.000 parse.py:175(port)
+       28    0.000    0.000    0.000    0.000 connection.py:254(is_closed)
+       42    0.000    0.000    0.000    0.000 timeout.py:227(connect_timeout)
+       26    0.000    0.000    0.000    0.000 {method 'cast' of 'memoryview' objects}
+       14    0.000    0.000    0.000    0.000 {method 'extend' of 'bytearray' objects}
+        4    0.000    0.000    0.000    0.000 cookiejar.py:1161(return_ok_domain)
+       13    0.000    0.000    0.000    0.000 utils.py:891(default_user_agent)
+       56    0.000    0.000    0.000    0.000 {method 'items' of 'collections.OrderedDict' objects}
+       14    0.000    0.000    0.000    0.000 {method 'append' of 'bytearray' objects}
+        2    0.000    0.000    0.970    0.485 sessions.py:593(get)
+       28    0.000    0.000    0.000    0.000 cookies.py:110(__init__)
+       28    0.000    0.000    0.000    0.000 {built-in method nt.fspath}
+       14    0.000    0.000    0.000    0.000 <frozen _collections_abc>:815(__len__)
+        3    0.000    0.000    0.000    0.000 parse.py:413(_splitnetloc)
+       28    0.000    0.000    0.000    0.000 client.py:440(isclosed)
+       14    0.000    0.000    0.000    0.000 parser.py:17(__init__)
+       28    0.000    0.000    0.000    0.000 {method 'update' of 'collections.OrderedDict' objects}
+        1    0.000    0.000    0.000    0.000 video.py:9(extract_youtube_video_id)
+       12    0.000    0.000    0.000    0.000 util.py:7(to_bytes)
+       14    0.000    0.000    0.000    0.000 {method 'flush' of '_io.BufferedReader' objects}
+       12    0.000    0.000    0.000    0.000 {built-in method builtins.max}
+        4    0.000    0.000    0.000    0.000 copy.py:259(_reconstruct)
+        1    0.000    0.000    9.707    9.707 sync_summary.py:101(final_summary)
+       28    0.000    0.000    0.000    0.000 {built-in method time.perf_counter}
+       30    0.000    0.000    0.000    0.000 {method 'toordinal' of 'datetime.date' objects}
+        1    0.000    0.000    0.791    0.791 _api.py:18(list_transcripts)
+       21    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        1    0.000    0.000    0.212    0.212 _transcripts.py:283(fetch)
+        1    0.000    0.000    1.005    1.005 video.py:43(get_transcript)
+       42    0.000    0.000    0.000    0.000 {method 'gettimeout' of '_socket.socket' objects}
+       14    0.000    0.000    0.000    0.000 {built-in method builtins.all}
+       24    0.000    0.000    0.000    0.000 {built-in method builtins.abs}
+        4    0.000    0.000    0.000    0.000 {method '__reduce_ex__' of 'object' objects}
+       14    0.000    0.000    0.000    0.000 {built-in method _socket.getdefaulttimeout}
+       14    0.000    0.000    0.000    0.000 ssl.py:1150(_check_connected)
+       14    0.000    0.000    0.000    0.000 queue.py:245(_init)
+        1    0.000    0.000    0.004    0.004 _transcripts.py:351(parse)
+       29    0.000    0.000    0.000    0.000 {method 'keys' of 'dict' objects}
+       14    0.000    0.000    0.000    0.000 {method 'fileno' of '_socket.socket' objects}
+       28    0.000    0.000    0.000    0.000 feedparser.py:124(__iter__)
+       14    0.000    0.000    0.000    0.000 connection.py:182(host)
+       26    0.000    0.000    0.000    0.000 {method 'end' of 're.Match' objects}
+       14    0.000    0.000    0.000    0.000 response.py:79(<listcomp>)
+       44    0.000    0.000    0.000    0.000 {built-in method builtins.chr}
+       14    0.000    0.000    0.000    0.000 {built-in method builtins.hash}
+       14    0.000    0.000    0.000    0.000 client.py:884(_get_hostport)
+        4    0.000    0.000    0.000    0.000 cookiejar.py:1123(return_ok_verifiability)
+       14    0.000    0.000    0.000    0.000 proxy.py:11(connection_requires_http_tunnel)
+        1    0.000    0.000   23.170   23.170 sync_summary.py:88(concatenate_summaries)
+       16    0.000    0.000    0.000    0.000 {built-in method builtins.min}
+       14    0.000    0.000    0.000    0.000 models.py:216(<genexpr>)
+       14    0.000    0.000    0.000    0.000 {built-in method time.monotonic}
+       14    0.000    0.000    0.000    0.000 cookies.py:87(get_new_headers)
+        8    0.000    0.000    0.000    0.000 cookiejar.py:810(is_expired)
+       14    0.000    0.000    0.000    0.000 utils.py:581(iter_slices)
+        1    0.000    0.000    0.000    0.000 cookiejar.py:1188(domain_return_ok)
+       14    0.000    0.000    0.000    0.000 adapters.py:578(add_headers)
+        1    0.000    0.000    0.000    0.000 pstats.py:108(__init__)
+        1    0.000    0.000    0.000    0.000 _transcripts.py:256(__init__)
+        4    0.000    0.000    0.000    0.000 cookiejar.py:1141(return_ok_expires)
+        1    0.000    0.000    0.000    0.000 parse.py:687(parse_qs)
+       14    0.000    0.000    0.000    0.000 {function socket.detach at 0x000002349329F420}
+       14    0.000    0.000    0.000    0.000 {function HTTPResponse.flush at 0x000002349330C2C0}
+       13    0.000    0.000    0.000    0.000 sessions.py:451(__enter__)
+        1    0.000    0.000    0.000    0.000 __init__.py:163(match)
+        4    0.000    0.000    0.000    0.000 copyreg.py:104(__newobj__)
+        1    0.000    0.000    0.000    0.000 cProfile.py:51(create_stats)
+        1    0.000    0.000    0.000    0.000 pstats.py:118(init)
+       14    0.000    0.000    0.000    0.000 connectionpool.py:340(_validate_conn)
+        1    0.000    0.000    0.000    0.000 cookiejar.py:1214(path_return_ok)
+        4    0.000    0.000    0.000    0.000 cookiejar.py:1114(return_ok_version)
+       14    0.000    0.000    0.000    0.000 typing.py:2256(cast)
+        2    0.000    0.000    0.000    0.000 _transcripts.py:32(_raise_http_errors)
+        4    0.000    0.000    0.000    0.000 cookiejar.py:1135(return_ok_secure)
+        1    0.000    0.000    0.000    0.000 _transcripts.py:342(_get_html_regex)
+        1    0.000    0.000    0.000    0.000 {method 'format' of 'str' objects}
+        3    0.000    0.000    0.000    0.000 parse.py:421(_checknetloc)
+        4    0.000    0.000    0.000    0.000 cookiejar.py:1147(return_ok_port)
+        4    0.000    0.000    0.000    0.000 cookiejar.py:1307(<lambda>)
+        1    0.000    0.000    0.000    0.000 pstats.py:137(load_stats)
+        1    0.000    0.000    0.000    0.000 <frozen codecs>:186(__init__)
+        1    0.000    0.000    0.000    0.000 _transcripts.py:213(_find_transcript)
+       10    0.000    0.000    0.000    0.000 {method 'isspace' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 _transcripts.py:169(find_transcript)
+        1    0.000    0.000    0.000    0.000 enum.py:193(__get__)
+        1    0.000    0.000    0.000    0.000 cookies.py:72(has_header)
+        1    0.000    0.000    0.000    0.000 _transcripts.py:101(__init__)
+        3    0.000    0.000    0.000    0.000 {method 'isalpha' of 'str' objects}
+        1    0.000    0.000    0.000    0.000 _transcripts.py:339(__init__)
+        1    0.000    0.000    0.000    0.000 __init__.py:225(compile)
+        1    0.000    0.000    0.000    0.000 cookies.py:84(add_unredirected_header)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+        1    0.000    0.000    0.000    0.000 {method 'close' of 'xml.etree.ElementTree.XMLParser' objects}
+        1    0.000    0.000    0.000    0.000 enum.py:1249(value)
+        1    0.000    0.000    0.000    0.000 _transcripts.py:41(__init__)
+
+
