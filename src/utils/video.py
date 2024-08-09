@@ -1,55 +1,62 @@
+# Python imports
+import re
+import os
 from urllib.parse import urlparse, parse_qs
+
+# Third-party imports
+import openai
 from youtube_transcript_api import YouTubeTranscriptApi as yt
 from youtube_transcript_api._errors import TranscriptsDisabled
-import openai
+
+# Local imports
 import configure
-#import downloader
 
-openai.api_key = configure.get_credentials('c:/Users/Adam/repos/summary-generator/.secret/keys.json')['openai']
+path = os.path.dirname(os.path.abspath(__file__))
+openai.api_key = configure.get_credentials(path + '/.secret/keys.json')['OpenAI']
 
-def extract_id(url: str) -> str:
+def extract_youtube_video_id(url: str) -> str:
     """
     Extracts the video ID from a YouTube video URL.
 
     This function takes a YouTube video URL as input and extracts the unique video ID from it. The URL must be from
-    the YouTube.com domain for the function to work properly. If the URL is invalid or not from YouTube.com, an error
-    message is returned.
+    the YouTube.com domain for the function to work properly. If the URL is invalid or not from YouTube.com, a ValueError
+    is raised.
 
     Args:
         url (str): A string containing the YouTube video URL.
 
     Returns:
         str: The extracted video ID if the URL is valid and contains a video ID.
-        str: An error message if the URL is not a video or not from the YouTube.com domain.
+
+    Raises:
+        ValueError: If the URL is not a video or not from the YouTube.com domain.
 
     Example:
         >>> url = "https://www.youtube.com/watch?v=abcdef12345"
-        >>> extract_id(url)
+        >>> extract_youtube_video_id(url)
         'abcdef12345'
 
     Note:
         This function assumes that the provided URL is a valid YouTube video URL and follows the standard format
         with the 'v' parameter containing the video ID.
-
     """
-    error = "The url provided is not a video, or is not from the YouTube.com domain"
-    
-    # Check if the URL is from the YouTube.com domain
-    if "youtube.com" not in url:
-        return error
+    if not isinstance(url, str):
+        raise ValueError("The URL must be a string")
 
-    # Extract the video ID
-    params = parse_qs(urlparse(url).query)
+    parsed_url = urlparse(url) # extracts components from URL string
+    if parsed_url.netloc not in ["www.youtube.com", "youtube.com"]: # `.netloc`: URL network location containing domain name
+        raise ValueError("The URL provided is not from the YouTube.com domain")
 
-    # Check if URL is a vid
+    params = parse_qs(parsed_url.query) # `.query`: URL query string
     if 'v' not in params:
-        return error
+        raise ValueError("The URL provided does not contain a video ID")
 
-    else:
-        video_id = params['v'][0]
-        return video_id
-        
-    
+    video_id = params['v'][0]
+    if not re.match(r'^[a-zA-Z0-9_-]{11}$', video_id): # `^[a-zA-Z0-9_-]{11}$`: regex pattern for 11 alphanumeric characters, hyphens, or underscores
+        raise ValueError("The extracted video ID is not valid")
+
+    return video_id
+
 def get_text(url: str) -> str:
     """
     Retrieves the transcribed text from a YouTube video.
@@ -74,7 +81,7 @@ def get_text(url: str) -> str:
 
     """
     # Extract the video ID from the URL
-    video_id = extract_id(url)
+    video_id = extract_youtube_video_id(url)
 
     # Fetch the subtitles for the video in English
     subs = yt.get_transcript(video_id=video_id, languages=['en'])
@@ -87,4 +94,4 @@ def get_text(url: str) -> str:
     return text
 
     
-#print(get_text("https://www.youtube.com/watch?v=imAYfKW1WG8"))
+print(get_text("https://www.youtube.com/watch?v=imAYfKW1WG8"))
