@@ -80,6 +80,34 @@ def final_summary(concatenated_summaries: str, medium: str) -> str:
         model="gpt-3.5-turbo",
         messages=messages
     )
-    return response.choices[0].message.content
+    return 1 #response.choices[0].message.content
 
-print(summarize(text=video.get_transcript("https://www.youtube.com/watch?v=imAYfKW1WG8"), medium="video", overlap=40, mode="", language="english"))
+
+########################################################
+# Performance profiling
+########################################################
+from cProfile import Profile
+from pstats import SortKey, Stats
+
+with Profile() as profile:
+
+    # Open the log file in write mode
+    with open('src/utils/logs/summary_profiling.log', 'w') as log_file:
+
+        # Redirect stdout to the log file
+        import sys
+        original_stdout = sys.stdout
+        sys.stdout = log_file
+
+        summarize(text=video.get_transcript('https://www.youtube.com/watch?v=imAYfKW1WG8'), medium='video', overlap=40, mode='', language='english')
+        stats = Stats(profile)  # Profile stats
+        stats.strip_dirs()  # Strip directories
+        stats.sort_stats(SortKey.TIME)  # Sort by time
+
+        print(f"Profile: {profile}")
+        stats.print_stats()  # Print stats
+        
+        # Restore stdout
+        sys.stdout = original_stdout
+    
+########################################################
