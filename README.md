@@ -63,7 +63,12 @@ All speedups as measured from base.
 
 ## Recent Updates
 
-### August 9 Update
+### August 10
+- Restructured directories to add `frontend`, `backend`, and testing dirs
+- Added testing for `video.py`
+- Caught a bug in `video.get_transcript()` - default language was `'en'` and so no transcript was getting pulled. Rewrote so tries specificed language, then tries English, and then falls back on first available transcript
+
+### August 9
 
 - Improved error handling and imports in `video.py` and summary files
 - Optimized code: better docstrings, naming, and separation of concerns
@@ -72,7 +77,7 @@ All speedups as measured from base.
 - Switched from GPT-3.5-turbo to GPT-4-mini
 - Implemented profiler for benchmarking
 
-### August 8 Update
+### August 8
 
 - Restructured directory
 - Created basic HTML and CSS for future use
