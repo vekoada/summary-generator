@@ -33,6 +33,16 @@ Despite similar tools now existing, I'm revisiting the project to improve it and
 
 ## Performance Improvements
 
+### Performance Optimization
+All speedups as measured from base.
+
+| Version | Runtime (s) | Function Calls | Speedup |
+|---------|-------------|----------------|---------|
+| Base (Sync GPT-3.5) | 25.235 | 242367 | - |
+| Async GPT-3.5 | 9.198 | 73185 | 2.74x |
+| Async GPT-4o Mini | 8.999 | 54709 | 2.8x
+| Async Llama-70B (Groq) | 4.844 | 53760 | 5.63x |
+
 ### Base Functionality (Synchronous with GPT-3.5-turbo)
 
 - Runtime: 25+ seconds
@@ -71,6 +81,7 @@ Despite similar tools now existing, I'm revisiting the project to improve it and
 
 - Increase chunk size for larger context windows
 - Implement adaptive chunking based on model context size
+- Profile smaller Groq model & test quality
 - Evaluate output quality of different models
 
 ## Project Status
