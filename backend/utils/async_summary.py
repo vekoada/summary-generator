@@ -31,7 +31,7 @@ model_config = {
 }
 
 
-def async_summarize(text: str, medium: str, api: str = "groq", overlap: int = 50, mode: str = "standard", language: str = "English") -> str:
+def async_summarize(text: str, medium: str, api: str = "groq", chunk_size: int = 1800, overlap: int = 50, mode: str = "standard", language: str = "English") -> str:
     """
     Asynchronously summarize text and optionally translate.
 
@@ -39,14 +39,15 @@ def async_summarize(text: str, medium: str, api: str = "groq", overlap: int = 50
         text (str): Input text to summarize.
         medium (str): Type of media (e.g., 'video', 'article').
         api (str, optional): API to use ('groq' or 'openai'). Defaults to 'groq'.
-        overlap (int, optional): Overlap for chunk creation. Defaults to 50.
+        chunk_size (int, optional): Size of chunk. Defaults to 1800 characters.
+        overlap (int, optional): Overlap for chunk creation. Defaults to 50 characters.
         mode (str, optional): Chunking mode ('random' or 'standard'). Defaults to "standard".
         language (str, optional): Target language for translation. Defaults to "English".
 
     Returns:
         str: Summarized and optionally translated text.
     """
-    chunk_list = random_chunks(text) if mode == "random" else create_chunks(text, overlap)
+    chunk_list = random_chunks(text) if mode == "random" else create_chunks(text, chunk_size, overlap)
     concatenated_summaries = asyncio.run(async_concatenate_summaries(chunk_list, api)) # All async functions are awaited here
     complete_summary = final_summary(concatenated_summaries, medium)
     return translate(target=language, text=complete_summary) if language.lower() != "english" else complete_summary
