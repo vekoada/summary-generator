@@ -14,7 +14,7 @@ def profile_summary(mode: str, api: str, chunk_size: int = 1800, overlap: int = 
     with Profile() as profile:
 
         # Open log file in write mode
-        with open(f"src/utils/logs/{api}_{mode}_{chunk_size}_{overlap}_summary_profiling.log", 'w') as log_file:
+        with open(f"backend/utils/logs/{api}_{mode}_{chunk_size}_{overlap}_summary_profiling.log", 'w') as log_file:
 
             import sys
             original_stdout = sys.stdout
@@ -39,5 +39,4 @@ def profile_summary(mode: str, api: str, chunk_size: int = 1800, overlap: int = 
             sys.stdout = original_stdout
 
 # Run profiling
-profile_summary("async", "groq", 1800, 50) 
-profile_summary("regular", "groq", 1800, 50)
+profile_summary("async", "groq", 1800, 50)
