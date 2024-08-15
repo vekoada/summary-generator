@@ -15,17 +15,8 @@ def create_chunks(text: str, overlap: int) -> list:
 
     Returns:
         list of str: A list containing text chunks as strings.
-
-    Example:
-        >>> text = "This is a sample text that will be divided into chunks with overlap."
-        >>> overlap = 50
-        >>> chunks = create_chunks(text, overlap)
-        >>> for chunk in chunks:
-        >>>     print(chunk)
-        'This is a sample text that will be divided into'
-        'chunks with overlap.'
     """
-    chunk_size = 900 - overlap
+    chunk_size = 1800 - overlap
 
     # Calculate the number of chunks needed
     num_chunks = (len(text) + chunk_size) // chunk_size
