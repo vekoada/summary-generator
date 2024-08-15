@@ -39,4 +39,4 @@ def profile_summary(mode: str, api: str, chunk_size: int = 1800, overlap: int = 
             sys.stdout = original_stdout
 
 # Run profiling
-profile_summary("async", "groq", 1800, 50)
+profile_summary("async", "groq", 3600, 50)
