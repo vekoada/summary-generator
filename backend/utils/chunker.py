@@ -1,22 +1,23 @@
 from random import randint
 from math import log
 
-def create_chunks(text: str, overlap: int) -> list:
+def create_chunks(text: str, chunk_size: int = 1800, overlap: int = 100) -> list:
     """
     Create text chunks from a given input text with a specified overlap.
 
-    This function takes a text input and divides it into chunks of approximately 900 characters each, with a specified
+    This function takes a text input and divides it into chunks of approximately 1800 characters each, with a specified
     overlap between chunks. The chunks are created in a way that they don't split words in the middle. The chunks are
     returned as a list of strings.
 
     Args:
         text (str): The input text to be divided into chunks.
+        chunk_size (int): The size of each chunk.
         overlap (int): The number of characters to overlap between adjacent chunks.
 
     Returns:
         list of str: A list containing text chunks as strings.
     """
-    chunk_size = 1800 - overlap
+    chunk_size -= overlap
 
     # Calculate the number of chunks needed
     num_chunks = (len(text) + chunk_size) // chunk_size
