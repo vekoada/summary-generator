@@ -26,10 +26,17 @@ Despite similar tools now existing, I'm revisiting the project to improve it and
 
 - Asynchronous operations
 - Performance profiling
+- Retrieval-Augmented Generation
+- Vector Search
+- MongoDB
 - Fullstack development
 - Proper project structure
 - Documentation
 - Production-level coding practices
+
+### Resources for Future Use
+ - Presidental Speeches RAG w/ Groq: https://shorturl.at/T9NkJ
+ - RAG w/ MongoDB Atlas: https://shorturl.at/DhY2M
 
 ## Performance Improvements
 
