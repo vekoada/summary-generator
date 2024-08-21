@@ -34,6 +34,23 @@ Despite similar tools now existing, I'm revisiting the project to improve it and
 - Documentation
 - Production-level coding practices
 
+### Roadmap
+1. **User provides YouTube URL** (done)
+2. **Extract video ID** (done)
+3. **Pull transcript if available** (done)
+   - If not available, transcribe with Whisper using Groq (TODO)
+4. **Make call to Groq LLaMA3 to provide video summary** (done)
+5. **Chunk transcript** (done)
+6. **Embed transcript chunks** (TODO)
+7. **Store embedded transcript chunks in MongoDB vectorstore (pymongo)** (TODO)
+8. **Provide user input option on screen** (TODO)
+   - Accept user query (TODO)
+   - Embed user query (TODO)
+   - Compute cosine similarity with embeddings (TODO)
+   - Supply relevant embedded chunks as context to Groq LLaMA3 model (TODO)
+   - Feed query to model (TODO)
+9. **Return model response** (TODO)
+
 ### Resources for Future Use
  - Presidental Speeches RAG w/ Groq: https://shorturl.at/T9NkJ
  - RAG w/ MongoDB Atlas: https://shorturl.at/DhY2M
