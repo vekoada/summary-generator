@@ -1,3 +1,7 @@
+# IGNORE THIS FILE. Currently not functional. 
+# Ultimate goal is to be able to transcribe YouTube videos.
+# However, YouTube has explicit protections from this. A workaround would be to download MP3 and then transcribe. Will figure out later.
+
 # Standard library imports
 import os
 
@@ -35,6 +39,4 @@ async def transcribe(url: str) -> str:
     except Exception as e:
         print(f"Exception: {e}")
 
-response = asyncio.run(transcribe(url='https://youtu.be/9en2brDsbH4')) 
-# DOES NOT work with YouTube URLs. They have explicit protections from this. A workaround would be to download MP3 and then transcribe. Will figure out later.
-# Doesn't work with Facebook, either. 
+#response = asyncio.run(transcribe(url='https://youtu.be/9en2brDsbH4')) 
