@@ -37,6 +37,8 @@ def create_chunks(text: str, chunk_size: int = 1800, overlap: int = 100) -> list
         # Include overlap if not the first chunk
         if i > 0:
             overlap_start = start - overlap
+            if not text[overlap_start].isspace(): # if the overlap doesn't start at a space, find the first occurrence of a space within the overlap range
+                overlap_start = text.find(' ', start - overlap, start)
             chunk_list.append(text[overlap_start:end])
         else:
             chunk_list.append(text[start:end])
